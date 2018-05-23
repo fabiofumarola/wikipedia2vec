@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Studio Ousia">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Learning Embeddings - Wikipedia2Vec</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Learning Embeddings";
+    var mkdocs_page_input_path = "commands.md";
+    var mkdocs_page_url = "/commands/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Wikipedia2Vec</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../install/">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Learning Embeddings</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#learning-embeddings">Learning Embeddings</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#building-dump-database">Building Dump Database</a></li>
+        
+            <li><a class="toctree-l3" href="#building-dictionary">Building Dictionary</a></li>
+        
+            <li><a class="toctree-l3" href="#building-link-graph-optional">Building Link Graph (Optional)</a></li>
+        
+            <li><a class="toctree-l3" href="#building-mention-db-optional">Building Mention DB (Optional)</a></li>
+        
+            <li><a class="toctree-l3" href="#learning-embeddings_1">Learning Embeddings</a></li>
+        
+            <li><a class="toctree-l3" href="#saving-embeddings-in-text-format">Saving Embeddings in Text Format</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../howitworks/">How It Works</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../pretrained/">Pretrained Embeddings</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Wikipedia2Vec</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Learning Embeddings</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/studio-ousia/wikipedia2vec/edit/master/docs/commands.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="learning-embeddings">Learning Embeddings</h1>
+<p>First, you need to download a source Wikipedia dump file (e.g., enwiki-latest-pages-articles.xml.bz2) from <a href="https://dumps.wikimedia.org/">Wikimedia Downloads</a>.
+The English dump file can be obtained by running the following command.</p>
+<pre><code>% wget https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2
+</code></pre>
+
+<p>Note that you do not need to decompress the dump file.</p>
+<p>Then, the embeddings can be trained from a Wikipedia dump using the <em>train</em> command.</p>
+<pre><code>% wikipedia2vec train DUMP_FILE OUT_FILE
+</code></pre>
+
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><em>DUMP_FILE</em>: The Wikipedia dump file</li>
+<li><em>OUT_FILE</em>: The output file</li>
+</ul>
+<p><strong>Options:</strong></p>
+<ul>
+<li><em>--dim-size</em>: The number of dimensions of the embeddings (default: 100)</li>
+<li><em>--window</em>: The maximum distance between the target item (word or entity) and the context word to be predicted (default: 5)</li>
+<li><em>--iteration</em>: The number of iterations for Wikipedia pages (default: 5)</li>
+<li><em>--negative</em>: The number of negative samples (default: 5)</li>
+<li><em>--lowercase/--no-lowercase</em>: Whether to lowercase words (default: True)</li>
+<li><em>--tokenizer</em>: The name of the tokenizer used to tokenize a text into words. Possible choices are <em>regexp</em>, <em>icu</em>, <em>mecab</em>, and <em>jieba</em></li>
+<li><em>--sent-detect</em>: The sentence detector used to split texts into sentences. Currently, only <em>icu</em> is the possible value (default: None)</li>
+<li><em>--min-word-count</em>: A word is ignored if the total frequency of the word is less than this value (default: 10)</li>
+<li><em>--min-entity-count</em>: An entity is ignored if the total frequency of the entity appearing as the referent of an anchor link is less than this value (default: 5)</li>
+<li><em>--min-paragraph-len</em>: A paragraph is ignored if its length is shorter than this value (default: 5)</li>
+<li><em>--category/--no-category</em>: Whether to include Wikipedia categories in the dictionary (default:False)</li>
+<li><em>--disambi/--no-disambi</em>: Whether to include disambiguation entities in the dictionary (default:False)</li>
+<li><em>--link-graph/--no-link-graph</em>: Whether to learn from the Wikipedia link graph (default: True)</li>
+<li><em>--entities-per-page</em>: For processing each page, the specified number of randomly chosen entities are used to predict their neighboring entities in the link graph (default: 10)</li>
+<li><em>--link-mentions</em>: Whether to convert entity names into links (default: True)</li>
+<li><em>--min-link-prob</em>: An entity name is ignored if the probability of the name appearing as a link is less than this value (default: 0.2)</li>
+<li><em>--min-prior-prob</em>: An entity is not registered as a referent of an entity name if the probability of the entity name referring to the entity is less than this value (default: 0.01)</li>
+<li><em>--max-mention-len</em>: The maximum number of characters in an entity name (default: 20)</li>
+<li><em>--init-alpha</em>: The initial learning rate (default: 0.025)</li>
+<li><em>--min-alpha</em>: The minimum learning rate (default: 0.0001)</li>
+<li><em>--sample</em>: The parameter that controls the downsampling of frequent words (default: 1e-4)</li>
+<li><em>--word-neg-power</em>: Negative sampling of words is performed based on the probability proportional to the frequency raised to the power specified by this option (default: 0.75)</li>
+<li><em>--entity-neg-power</em>: Negative sampling of entities is performed based on the probability proportional to the frequency raised to the power specified by this option (default: 0)</li>
+<li><em>--pool-size</em>: The number of worker processes (default: the number of CPUs)</li>
+</ul>
+<p>The <em>train</em> command internally calls the five commands described below (namely, <em>build_dump_db</em>, <em>build_dictionary</em>, <em>build_link_graph</em>, <em>build_mention_db</em>, and <em>train_embedding</em>).</p>
+<h2 id="building-dump-database">Building Dump Database</h2>
+<p>The <em>build_dump_db</em> command creates a database that contains Wikipedia pages each of which consists of texts and anchor links in it.</p>
+<pre><code>% wikipedia2vec build_dump_db DUMP_FILE OUT_FILE
+</code></pre>
+
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><em>DUMP_FILE</em>: The Wikipedia dump file</li>
+<li><em>OUT_FILE</em>: The output file</li>
+</ul>
+<p><strong>Options:</strong></p>
+<ul>
+<li><em>--pool-size</em>: The number of worker processes (default: the number of CPUs)</li>
+</ul>
+<h2 id="building-dictionary">Building Dictionary</h2>
+<p>The <em>build_dictionary</em> command builds a dictionary of words and entities.</p>
+<pre><code>% wikipedia2vec build_dictionary DUMP_DB_FILE OUT_FILE
+</code></pre>
+
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><em>DUMP_DB_FILE</em>: The database file generated using the <em>build_dump_db</em> command</li>
+<li><em>OUT_FILE</em>: The output file</li>
+</ul>
+<p><strong>Options:</strong></p>
+<ul>
+<li><em>--lowercase/--no-lowercase</em>: Whether to lowercase words (default: True)</li>
+<li><em>--tokenizer</em>: The name of the tokenizer used to tokenize a text into words. Possible choices are <em>regexp</em>, <em>icu</em>, <em>mecab</em>, and <em>jieba</em></li>
+<li><em>--min-word-count</em>: A word is ignored if the total frequency of the word is less than this value (default: 10)</li>
+<li><em>--min-entity-count</em>: An entity is ignored if the total frequency of the entity appearing as the referent of an anchor link is less than this value (default: 5)</li>
+<li><em>--min-paragraph-len</em>: A paragraph is ignored if its length is shorter than this value (default: 5)</li>
+<li><em>--category/--no-category</em>: Whether to include Wikipedia categories in the dictionary (default:False)</li>
+<li><em>--disambi/--no-disambi</em>: Whether to include disambiguation entities in the dictionary (default:False)</li>
+<li><em>--pool-size</em>: The number of worker processes (default: the number of CPUs)</li>
+</ul>
+<h2 id="building-link-graph-optional">Building Link Graph (Optional)</h2>
+<p>The <em>build_link_graph</em> command generates a sparse matrix representing the link structure between Wikipedia entities.</p>
+<pre><code>% wikipedia2vec build_link_graph DUMP_DB_FILE DIC_FILE OUT_FILE
+</code></pre>
+
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><em>DUMP_DB_FILE</em>: The database file generated using the <em>build_dump_db</em> command</li>
+<li><em>DIC_FILE</em>: The dictionary file generated by the <em>build_dictionary</em> command</li>
+<li><em>OUT_FILE</em>: The output file</li>
+</ul>
+<p><strong>Options:</strong></p>
+<ul>
+<li><em>--pool-size</em>: The number of worker processes (default: the number of CPUs)</li>
+</ul>
+<h2 id="building-mention-db-optional">Building Mention DB (Optional)</h2>
+<p>The <em>build_mention_db</em> command builds a database that contains the mappings of entity names (mentions) and their possible referent entities.</p>
+<pre><code>% wikipedia2vec build_mention_db DUMP_DB_FILE DIC_FILE OUT_FILE
+</code></pre>
+
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><em>DUMP_DB_FILE</em>: The database file generated using the <em>build_dump_db</em> command</li>
+<li><em>DIC_FILE</em>: The dictionary file generated by the <em>build_dictionary</em> command</li>
+<li><em>OUT_FILE</em>: The output file</li>
+</ul>
+<p><strong>Options:</strong></p>
+<ul>
+<li><em>--min-link-prob</em>: An entity name is ignored if the probability of the name appearing as a link is less than this value (default: 0.2)</li>
+<li><em>--min-prior-prob</em>: An entity is not registered as a referent of an entity name if the probability of the entity name referring to the entity is less than this value (default: 0.01)</li>
+<li><em>--max-mention-len</em>: The maximum number of characters in an entity name (default: 20)</li>
+<li><em>--case-sensitive</em>: Whether to detect entity names in a case sensitive manner (default: False)</li>
+<li><em>--tokenizer</em>: The name of the tokenizer used to tokenize a text into words. Possible choices are <em>regexp</em>, <em>icu</em>, <em>mecab</em>, and <em>jieba</em></li>
+<li><em>--pool-size</em>: The number of worker processes (default: the number of CPUs)</li>
+</ul>
+<h2 id="learning-embeddings_1">Learning Embeddings</h2>
+<p>The <em>train_embedding</em> command runs the training of the embeddings.</p>
+<pre><code>% wikipedia2vec train_embedding DUMP_DB_FILE DIC_FILE OUT_FILE
+</code></pre>
+
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><em>DUMP_DB_FILE</em>: The database file generated using the <em>build_dump_db</em> command</li>
+<li><em>DIC_FILE</em>: The dictionary file generated by the <em>build_dictionary</em> command</li>
+<li><em>OUT_FILE</em>: The output file</li>
+</ul>
+<p><strong>Options:</strong></p>
+<ul>
+<li><em>--link-graph</em>: The link graph file generated using the <em>build_link_graph</em> command</li>
+<li><em>--mention-db</em>: The mention DB file generated using the <em>build_mention_db</em> command</li>
+<li><em>--dim-size</em>: The number of dimensions of the embeddings (default: 100)</li>
+<li><em>--window</em>: The maximum distance between the target item (word or entity) and the context word to be predicted (default: 5)</li>
+<li><em>--iteration</em>: The number of iterations for Wikipedia pages (default: 5)</li>
+<li><em>--negative</em>: The number of negative samples (default: 5)</li>
+<li><em>--tokenizer</em>: The name of the tokenizer used to tokenize a text into words. Possible values are <em>regexp</em>, <em>icu</em>, <em>mecab</em>, and <em>jieba</em></li>
+<li><em>--sent-detect</em>: The sentence detector used to split texts into sentences. Currently, only <em>icu</em> is the possible value (default: None)</li>
+<li><em>--entities-per-page</em>: For processing each page, the specified number of randomly chosen entities are used to predict their neighboring entities in the link graph (default: 10)</li>
+<li><em>--init-alpha</em>: The initial learning rate (default: 0.025)</li>
+<li><em>--min-alpha</em>: The minimum learning rate (default: 0.0001)</li>
+<li><em>--sample</em>: The parameter that controls the downsampling of frequent words (default: 1e-4)</li>
+<li><em>--word-neg-power</em>: Negative sampling of words is performed based on the probability proportional to the frequency raised to the power specified by this option (default: 0.75)</li>
+<li><em>--entity-neg-power</em>: Negative sampling of entities is performed based on the probability proportional to the frequency raised to the power specified by this option (default: 0)</li>
+<li><em>--pool-size</em>: The number of worker processes (default: the number of CPUs)</li>
+</ul>
+<h2 id="saving-embeddings-in-text-format">Saving Embeddings in Text Format</h2>
+<p><em>save_text</em> outputs a model in a text format.</p>
+<pre><code>% wikipedia2vec save_text MODEL_FILE OUT_FILE
+</code></pre>
+
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><em>MODEL_FILE</em>: The model file generated by the <em>train_embedding</em> command</li>
+<li><em>OUT_FILE</em>: The output file</li>
+</ul>
+<p><strong>Options:</strong></p>
+<ul>
+<li><em>--out-format</em>: The output format. Possible values are <em>default</em>, <em>word2vec</em>, and <em>glove</em>. If <em>word2vec</em> and <em>glove</em> are specified, the format adopted by <a href="https://code.google.com/archive/p/word2vec/">Word2Vec</a> and <a href="https://nlp.stanford.edu/projects/glove/">GloVe</a> are used, respectively.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../howitworks/" class="btn btn-neutral float-right" title="How It Works">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../install/" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/studio-ousia/wikipedia2vec/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../install/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../howitworks/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Studio Ousia">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Installation - Wikipedia2Vec</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Installation";
+    var mkdocs_page_input_path = "install.md";
+    var mkdocs_page_url = "/install/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Wikipedia2Vec</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Installation</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#installation">Installation</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../commands/">Learning Embeddings</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../howitworks/">How It Works</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../pretrained/">Pretrained Embeddings</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Wikipedia2Vec</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Installation</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/studio-ousia/wikipedia2vec/edit/master/docs/install.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="installation">Installation</h1>
+<p>Wikipedia2Vec can be installed from PyPI:</p>
+<pre><code class="bash">% pip install wikipedia2vec
+</code></pre>
+
+<p>Alternatively, you can install the development version of this software from the GitHub repository:</p>
+<pre><code class="bash">% git clone https://github.com/studio-ousia/wikipedia2vec.git
+% cd wikipedia2vec
+% pip install Cython
+% ./cythonize.sh
+% pip install .
+</code></pre>
+
+<p>Wikipedia2Vec requires the 64-bit version of Python, and can be run on Linux, Windows, and Mac OSX.
+It currently depends on the following Python libraries: <a href="http://click.pocoo.org/">click</a>, <a href="https://github.com/fxsjy/jieba">jieba</a>, <a href="https://pythonhosted.org/joblib/">joblib</a>, <a href="https://lmdb.readthedocs.io/">lmdb</a>, <a href="http://marisa-trie.readthedocs.io/">marisa-trie</a>, <a href="https://mwparserfromhell.readthedocs.io/">mwparserfromhell</a>, <a href="http://www.numpy.org/">numpy</a>, <a href="https://www.scipy.org/">scipy</a>, <a href="https://pythonhosted.org/six/">six</a>, and <a href="https://github.com/tqdm/tqdm">tqdm</a>.</p>
+<p>If you want to train embeddings on your machine, it is highly recommended to install a BLAS library.
+We recommend using <a href="https://www.openblas.net/">OpenBLAS</a> or <a href="https://software.intel.com/en-us/mkl">Intel Math Kernel Library</a>.
+Note that, the BLAS library needs to be recognized properly from SciPy.
+This can be confirmed by using the following command:</p>
+<pre><code>% python -c 'import scipy; scipy.show_config()'
+</code></pre>
+
+<p>To process Japanese Wikipedia dumps, it is also required to install <a href="http://taku910.github.io/mecab/">MeCab</a> and <a href="https://pypi.python.org/pypi/mecab-python3">its Python binding</a>.
+Furthermore, to use <a href="http://site.icu-project.org/">ICU library</a> to split either words or sentences or both, you need to install the <a href="http://site.icu-project.org/download">C/C++ ICU library</a> and the <a href="https://pypi.org/project/PyICU/">PyICU</a> library.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../commands/" class="btn btn-neutral float-right" title="Learning Embeddings">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/studio-ousia/wikipedia2vec/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../commands/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

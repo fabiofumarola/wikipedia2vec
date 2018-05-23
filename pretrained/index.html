@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Studio Ousia">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Pretrained Embeddings - Wikipedia2Vec</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Pretrained Embeddings";
+    var mkdocs_page_input_path = "pretrained.md";
+    var mkdocs_page_url = "/pretrained/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Wikipedia2Vec</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../install/">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../commands/">Learning Embeddings</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../howitworks/">How It Works</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Pretrained Embeddings</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#pretrained-embeddings">Pretrained Embeddings</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#english">English</a></li>
+        
+            <li><a class="toctree-l3" href="#arabic">Arabic</a></li>
+        
+            <li><a class="toctree-l3" href="#chinese">Chinese</a></li>
+        
+            <li><a class="toctree-l3" href="#dutch">Dutch</a></li>
+        
+            <li><a class="toctree-l3" href="#french">French</a></li>
+        
+            <li><a class="toctree-l3" href="#german">German</a></li>
+        
+            <li><a class="toctree-l3" href="#italian">Italian</a></li>
+        
+            <li><a class="toctree-l3" href="#japanese">Japanese</a></li>
+        
+            <li><a class="toctree-l3" href="#polish">Polish</a></li>
+        
+            <li><a class="toctree-l3" href="#portuguese">Portuguese</a></li>
+        
+            <li><a class="toctree-l3" href="#russian">Russian</a></li>
+        
+            <li><a class="toctree-l3" href="#spanish">Spanish</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Wikipedia2Vec</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Pretrained Embeddings</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/studio-ousia/wikipedia2vec/edit/master/docs/pretrained.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="pretrained-embeddings">Pretrained Embeddings</h1>
+<p>We provide pretrained embeddings for the following 12 languages.</p>
+<p>We provide the embeddings in <em>binary</em> and <em>text</em> format.
+The binary files can be loaded using the <code>Wikipedia2Vec.load()</code> method (see the Sample Usage section below).
+The text files are compatible with the format of the <a href="https://code.google.com/archive/p/word2vec/">Word2vec</a>.
+Therefore, these files can be loaded using other libraries such as Gensim's <a href="https://radimrehurek.com/gensim/models/keyedvectors.html#gensim.models.keyedvectors.Word2VecKeyedVectors.load_word2vec_format"><code>load_word2vec_format()</code></a>.
+In the text files, all entities have a prefix <em>ENTITY/</em> to distinguish them from words.</p>
+<h4 id="english">English</h4>
+<ul>
+<li><em>enwiki_20180420</em> (window=5, iteration=10, negative=15):
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_100d.pkl.bz2">100d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_100d.txt.bz2">100d (txt)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_300d.pkl.bz2">300d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_300d.txt.bz2">300d (txt)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_500d.pkl.bz2">500d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_500d.txt.bz2">500d (txt)</a></li>
+<li><em>enwiki_20180420_nolg</em> (window=5, iteration=10, negative=15, no link graph):
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_nolg_100d.pkl.bz2">100d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_nolg_100d.txt.bz2">100d (txt)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_nolg_300d.pkl.bz2">300d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_nolg_300d.txt.bz2">300d (txt)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_nolg_500d.pkl.bz2">500d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_nolg_500d.txt.bz2">500d (txt)</a></li>
+<li><em>enwiki_20180420_win10</em> (window=10, iteration=10, negative=15):
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_win10_100d.pkl.bz2">100d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_win10_100d.txt.bz2">100d (txt)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_win10_300d.pkl.bz2">300d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_win10_300d.txt.bz2">300d (txt)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_win10_500d.pkl.bz2">500d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_win10_500d.txt.bz2">500d (txt)</a></li>
+</ul>
+<h4 id="arabic">Arabic</h4>
+<ul>
+<li><em>arwiki_20180420</em> (window=5, iteration=10, negative=15):
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/ar/2018-04-20/arwiki_20180420_100d.pkl.bz2">100d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/ar/2018-04-20/arwiki_20180420_100d.txt.bz2">100d (txt)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/ar/2018-04-20/arwiki_20180420_300d.pkl.bz2">300d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/ar/2018-04-20/arwiki_20180420_300d.txt.bz2">300d (txt)</a></li>
+</ul>
+<h4 id="chinese">Chinese</h4>
+<ul>
+<li><em>zhwiki_20180420</em> (window=5, iteration=10, negative=15):
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/zh/2018-04-20/zhwiki_20180420_100d.pkl.bz2">100d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/zh/2018-04-20/zhwiki_20180420_100d.txt.bz2">100d (txt)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/zh/2018-04-20/zhwiki_20180420_300d.pkl.bz2">300d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/zh/2018-04-20/zhwiki_20180420_300d.txt.bz2">300d (txt)</a></li>
+</ul>
+<h4 id="dutch">Dutch</h4>
+<ul>
+<li><em>nlwiki_20180420</em> (window=5, iteration=10, negative=15):
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/nl/2018-04-20/nlwiki_20180420_100d.pkl.bz2">100d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/nl/2018-04-20/nlwiki_20180420_100d.txt.bz2">100d (txt)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/nl/2018-04-20/nlwiki_20180420_300d.pkl.bz2">300d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/nl/2018-04-20/nlwiki_20180420_300d.txt.bz2">300d (txt)</a></li>
+</ul>
+<h4 id="french">French</h4>
+<ul>
+<li><em>frwiki_20180420</em> (window=5, iteration=10, negative=15):
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/fr/2018-04-20/frwiki_20180420_100d.pkl.bz2">100d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/fr/2018-04-20/frwiki_20180420_100d.txt.bz2">100d (txt)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/fr/2018-04-20/frwiki_20180420_300d.pkl.bz2">300d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/fr/2018-04-20/frwiki_20180420_300d.txt.bz2">300d (txt)</a></li>
+</ul>
+<h4 id="german">German</h4>
+<ul>
+<li><em>dewiki_20180420</em> (window=5, iteration=10, negative=15):
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/de/2018-04-20/dewiki_20180420_100d.pkl.bz2">100d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/de/2018-04-20/dewiki_20180420_100d.txt.bz2">100d (txt)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/de/2018-04-20/dewiki_20180420_300d.pkl.bz2">300d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/de/2018-04-20/dewiki_20180420_300d.txt.bz2">300d (txt)</a></li>
+</ul>
+<h4 id="italian">Italian</h4>
+<ul>
+<li><em>itwiki_20180420</em> (window=5, iteration=10, negative=15):
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/it/2018-04-20/itwiki_20180420_100d.pkl.bz2">100d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/it/2018-04-20/itwiki_20180420_100d.txt.bz2">100d (txt)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/it/2018-04-20/itwiki_20180420_300d.pkl.bz2">300d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/it/2018-04-20/itwiki_20180420_300d.txt.bz2">300d (txt)</a></li>
+</ul>
+<h4 id="japanese">Japanese</h4>
+<ul>
+<li><em>jawiki_20180420</em> (window=5, iteration=10, negative=15):
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/ja/2018-04-20/jawiki_20180420_100d.pkl.bz2">100d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/ja/2018-04-20/jawiki_20180420_100d.txt.bz2">100d (txt)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/ja/2018-04-20/jawiki_20180420_300d.pkl.bz2">300d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/ja/2018-04-20/jawiki_20180420_300d.txt.bz2">300d (txt)</a></li>
+</ul>
+<h4 id="polish">Polish</h4>
+<ul>
+<li><em>plwiki_20180420</em> (window=5, iteration=10, negative=15):
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/pl/2018-04-20/plwiki_20180420_100d.pkl.bz2">100d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/pl/2018-04-20/plwiki_20180420_100d.txt.bz2">100d (txt)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/pl/2018-04-20/plwiki_20180420_300d.pkl.bz2">300d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/pl/2018-04-20/plwiki_20180420_300d.txt.bz2">300d (txt)</a></li>
+</ul>
+<h4 id="portuguese">Portuguese</h4>
+<ul>
+<li><em>ptwiki_20180420</em> (window=5, iteration=10, negative=15):
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/pt/2018-04-20/ptwiki_20180420_100d.pkl.bz2">100d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/pt/2018-04-20/ptwiki_20180420_100d.txt.bz2">100d (txt)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/pt/2018-04-20/ptwiki_20180420_300d.pkl.bz2">300d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/pt/2018-04-20/ptwiki_20180420_300d.txt.bz2">300d (txt)</a></li>
+</ul>
+<h4 id="russian">Russian</h4>
+<ul>
+<li><em>ruwiki_20180420</em> (window=5, iteration=10, negative=15):
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/ru/2018-04-20/ruwiki_20180420_100d.pkl.bz2">100d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/ru/2018-04-20/ruwiki_20180420_100d.txt.bz2">100d (txt)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/ru/2018-04-20/ruwiki_20180420_300d.pkl.bz2">300d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/ru/2018-04-20/ruwiki_20180420_300d.txt.bz2">300d (txt)</a></li>
+</ul>
+<h4 id="spanish">Spanish</h4>
+<ul>
+<li><em>eswiki_20180420</em> (window=5, iteration=10, negative=15):
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/es/2018-04-20/eswiki_20180420_100d.pkl.bz2">100d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/es/2018-04-20/eswiki_20180420_100d.txt.bz2">100d (txt)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/es/2018-04-20/eswiki_20180420_300d.pkl.bz2">300d (bin)</a>
+  <a href="http://wikipedia2vec.s3.amazonaws.com/models/es/2018-04-20/eswiki_20180420_300d.txt.bz2">300d (txt)</a></li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../howitworks/" class="btn btn-neutral" title="How It Works"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/studio-ousia/wikipedia2vec/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../howitworks/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

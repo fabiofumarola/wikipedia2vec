@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  <meta name="author" content="Studio Ousia">
+  <link rel="shortcut icon" href="./img/favicon.ico">
+  <title>Home - Wikipedia2Vec</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> Wikipedia2Vec</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href=".">Home</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#introduction">Introduction</a></li>
+    
+
+    <li class="toctree-l2"><a href="#sample-usage">Sample Usage</a></li>
+    
+
+    <li class="toctree-l2"><a href="#reference">Reference</a></li>
+    
+
+    <li class="toctree-l2"><a href="#license">License</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="install/">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="commands/">Learning Embeddings</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="howitworks/">How It Works</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="pretrained/">Pretrained Embeddings</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">Wikipedia2Vec</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/studio-ousia/wikipedia2vec/edit/master/docs/index.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><a href="http://badge.fury.io/py/wikipedia2vec"><img alt="Fury badge" src="https://badge.fury.io/py/wikipedia2vec.png" /></a>
+<a href="https://circleci.com/gh/studio-ousia/wikipedia2vec/tree/master"><img alt="CircleCI" src="https://circleci.com/gh/studio-ousia/wikipedia2vec/tree/master.svg?style=svg" /></a></p>
+<h2 id="introduction">Introduction</h2>
+<p>Wikipedia2Vec is a tool used for obtaining embeddings (vector representations) of words and entities from Wikipedia.
+It is developed and maintained by <a href="http://www.ousia.jp">Studio Ousia</a>.</p>
+<p>This tool enables you to learn embeddings that map words and entities into a unified continuous vector space.
+The embeddings can be used as word embeddings, entity embeddings, and the unified embeddings of words and entities.
+They are used in the state-of-the-art models of various tasks such as <a href="https://arxiv.org/abs/1601.01343">entity linking</a>, <a href="http://www.aclweb.org/anthology/I17-2017">named entity recognition</a>, <a href="https://arxiv.org/abs/1601.01343">entity relatedness</a>, and <a href="https://arxiv.org/abs/1803.08652">question answering</a>.</p>
+<p>The embeddings can be easily trained by a single command with a publicly available Wikipedia dump as input.
+The code is implemented in Python, and optimized using Cython and BLAS.</p>
+<h2 id="sample-usage">Sample Usage</h2>
+<pre><code class="python">&gt;&gt;&gt; from wikipedia2vec import Wikipedia2Vec
+
+&gt;&gt;&gt; wiki2vec = Wikipedia2Vec.load(MODEL_FILE)
+
+&gt;&gt;&gt; wiki2vec.get_word_vector('the')
+memmap([ 0.01617998, -0.03325786, -0.01397999, -0.00150471,  0.03237337,
+...
+       -0.04226106, -0.19677088, -0.31087297,  0.1071524 , -0.09824426], dtype=float32)
+
+&gt;&gt;&gt; wiki2vec.get_entity_vector('Scarlett Johansson')
+memmap([-0.19793572,  0.30861306,  0.29620451, -0.01193621,  0.18228433,
+...
+        0.04986198,  0.24383858, -0.01466644,  0.10835337, -0.0697331 ], dtype=float32)
+
+&gt;&gt;&gt; wiki2vec.most_similar(wiki2vec.get_word('yoda'), 5)
+[(&lt;Word yoda&gt;, 1.0),
+ (&lt;Entity Yoda&gt;, 0.84333622),
+ (&lt;Word darth&gt;, 0.73328167),
+ (&lt;Word kenobi&gt;, 0.7328127),
+ (&lt;Word jedi&gt;, 0.7223742)]
+
+&gt;&gt;&gt; wiki2vec.most_similar(wiki2vec.get_entity('Scarlett Johansson'), 5)
+[(&lt;Entity Scarlett Johansson&gt;, 1.0),
+ (&lt;Entity Natalie Portman&gt;, 0.75090045),
+ (&lt;Entity Eva Mendes&gt;, 0.73651594),
+ (&lt;Entity Emma Stone&gt;, 0.72868186),
+ (&lt;Entity Cameron Diaz&gt;, 0.72390842)]
+</code></pre>
+
+<h2 id="reference">Reference</h2>
+<p>If you use Wikipedia2Vec in a scientific publication, please cite the following paper:</p>
+<pre><code>@InProceedings{yamada-EtAl:2016:CoNLL,
+  author    = {Yamada, Ikuya  and  Shindo, Hiroyuki  and  Takeda, Hideaki  and  Takefuji, Yoshiyasu},
+  title     = {Joint Learning of the Embedding of Words and Entities for Named Entity Disambiguation},
+  booktitle = {Proceedings of The 20th SIGNLL Conference on Computational Natural Language Learning},
+  month     = {August},
+  year      = {2016},
+  address   = {Berlin, Germany},
+  pages     = {250--259},
+  publisher = {Association for Computational Linguistics}
+}
+</code></pre>
+<h2 id="license">License</h2>
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="install/" class="btn btn-neutral float-right" title="Installation">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/studio-ousia/wikipedia2vec/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+        <span style="margin-left: 15px"><a href="install/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="./js/theme.js"></script>
+      <script src="./search/require.js"></script>
+      <script src="./search/search.js"></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.17.3
+Build Date UTC : 2018-05-23 02:15:15
+-->
