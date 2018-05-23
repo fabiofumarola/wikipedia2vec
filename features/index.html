@@ -8,7 +8,7 @@
   
   <meta name="author" content="Studio Ousia">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>How It Works - Wikipedia2Vec</title>
+  <title>Features - Wikipedia2Vec</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "How It Works";
-    var mkdocs_page_input_path = "howitworks.md";
-    var mkdocs_page_url = "/howitworks/";
+    var mkdocs_page_name = "Features";
+    var mkdocs_page_input_path = "features.md";
+    var mkdocs_page_url = "/features/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -57,17 +57,12 @@
     <a class="" href="../install/">Installation</a>
 	    </li>
           
-            <li class="toctree-l1">
-		
-    <a class="" href="../commands/">Learning Embeddings</a>
-	    </li>
-          
             <li class="toctree-l1 current">
 		
-    <a class="current" href="./">How It Works</a>
+    <a class="current" href="./">Features</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#how-it-works">How It Works</a></li>
+    <li class="toctree-l2"><a href="#features">Features</a></li>
     
         <ul>
         
@@ -84,6 +79,11 @@
             <li class="toctree-l1">
 		
     <a class="" href="../pretrained/">Pretrained Embeddings</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../commands/">Learning Embeddings</a>
 	    </li>
           
         </ul>
@@ -108,10 +108,10 @@
     
       
     
-    <li>How It Works</li>
+    <li>Features</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/studio-ousia/wikipedia2vec/edit/master/docs/howitworks.md"
+        <a href="https://github.com/studio-ousia/wikipedia2vec/edit/master/docs/features.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -121,12 +121,12 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="how-it-works">How It Works</h1>
-<p>Wikipedia2Vec is based on the <a href="https://en.wikipedia.org/wiki/Word2vec">Word2vec's skip-gram model</a> that learns to predict neighboring words given each word in corpora.
-Wikipedia2Vec has two unique features desciribed below.</p>
+                <h1 id="features">Features</h1>
+<p>Wikipedia2Vec has two unique features that are designed to effectively learn embeddings from Wikipedia.</p>
 <h2 id="extended-skip-gram-model-to-learn-embeddings-of-words-and-entities">Extended Skip-Gram Model to Learn Embeddings of Words and Entities</h2>
 <p><img src="http://studio-ousia.github.io/wikipedia2vec/img/model.png" width="600" /></p>
-<p>We extend the skip-gram model by adding the following two submodels:</p>
+<p>Wikipedia2Vec is based on the <a href="https://en.wikipedia.org/wiki/Word2vec">Word2vec's skip-gram model</a> that learns to predict neighboring words given each word in corpora.
+We extend the skip-gram model by adding the following two submodels:</p>
 <ul>
 <li><em>The link graph model</em> that learns to estimate neighboring entities given an entity in the link graph of Wikipedia entities.</li>
 <li><em>The anchor context model</em> that learns to predict neighboring words given an entity by using a link that points to the entity and its neighboring words.</li>
@@ -149,7 +149,7 @@ Then, it converts an entity name to a link pointing to an entity if the entity n
         <a href="../pretrained/" class="btn btn-neutral float-right" title="Pretrained Embeddings">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../commands/" class="btn btn-neutral" title="Learning Embeddings"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../install/" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -177,7 +177,7 @@ Then, it converts an entity name to a link pointing to an entity if the entity n
           <a href="https://github.com/studio-ousia/wikipedia2vec/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../commands/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../install/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../pretrained/" style="color: #fcfcfc">Next &raquo;</a></span>

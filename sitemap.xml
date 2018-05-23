@@ -19,15 +19,7 @@
 
     
     <url>
-     <loc>/commands/</loc>
-     <lastmod>2018-05-23</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    
-
-    
-    <url>
-     <loc>/howitworks/</loc>
+     <loc>/features/</loc>
      <lastmod>2018-05-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -36,6 +28,14 @@
     
     <url>
      <loc>/pretrained/</loc>
+     <lastmod>2018-05-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/commands/</loc>
      <lastmod>2018-05-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
