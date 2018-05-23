@@ -55,9 +55,6 @@
     <li class="toctree-l2"><a href="#introduction">Introduction</a></li>
     
 
-    <li class="toctree-l2"><a href="#sample-usage">Sample Usage</a></li>
-    
-
     <li class="toctree-l2"><a href="#reference">Reference</a></li>
     
 
@@ -85,6 +82,11 @@
             <li class="toctree-l1">
 		
     <a class="" href="commands/">Learning Embeddings</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="usage/">Basic Usage</a>
 	    </li>
           
         </ul>
@@ -133,36 +135,6 @@ They are used in the state-of-the-art models of various tasks such as <a href="h
 <p>The embeddings can be easily trained by a single command with a publicly available Wikipedia dump as input.
 The code is implemented in Python, and optimized using Cython and BLAS.</p>
 <p>The pretrained embeddings for 12 languages can be downloaded from <a href="pretrained/">this page</a>.</p>
-<h2 id="sample-usage">Sample Usage</h2>
-<pre><code class="python">&gt;&gt;&gt; from wikipedia2vec import Wikipedia2Vec
-
-&gt;&gt;&gt; wiki2vec = Wikipedia2Vec.load(MODEL_FILE)
-
-&gt;&gt;&gt; wiki2vec.get_word_vector('the')
-memmap([ 0.01617998, -0.03325786, -0.01397999, -0.00150471,  0.03237337,
-...
-       -0.04226106, -0.19677088, -0.31087297,  0.1071524 , -0.09824426], dtype=float32)
-
-&gt;&gt;&gt; wiki2vec.get_entity_vector('Scarlett Johansson')
-memmap([-0.19793572,  0.30861306,  0.29620451, -0.01193621,  0.18228433,
-...
-        0.04986198,  0.24383858, -0.01466644,  0.10835337, -0.0697331 ], dtype=float32)
-
-&gt;&gt;&gt; wiki2vec.most_similar(wiki2vec.get_word('yoda'), 5)
-[(&lt;Word yoda&gt;, 1.0),
- (&lt;Entity Yoda&gt;, 0.84333622),
- (&lt;Word darth&gt;, 0.73328167),
- (&lt;Word kenobi&gt;, 0.7328127),
- (&lt;Word jedi&gt;, 0.7223742)]
-
-&gt;&gt;&gt; wiki2vec.most_similar(wiki2vec.get_entity('Scarlett Johansson'), 5)
-[(&lt;Entity Scarlett Johansson&gt;, 1.0),
- (&lt;Entity Natalie Portman&gt;, 0.75090045),
- (&lt;Entity Eva Mendes&gt;, 0.73651594),
- (&lt;Entity Emma Stone&gt;, 0.72868186),
- (&lt;Entity Cameron Diaz&gt;, 0.72390842)]
-</code></pre>
-
 <h2 id="reference">Reference</h2>
 <p>If you use Wikipedia2Vec in a scientific publication, please cite the following paper:</p>
 <pre><code>@InProceedings{yamada-EtAl:2016:CoNLL,
@@ -229,5 +201,5 @@ memmap([-0.19793572,  0.30861306,  0.29620451, -0.01193621,  0.18228433,
 
 <!--
 MkDocs version : 0.17.3
-Build Date UTC : 2018-05-23 13:23:26
+Build Date UTC : 2018-05-23 13:34:30
 -->

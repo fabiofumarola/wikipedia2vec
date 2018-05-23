@@ -8,7 +8,7 @@
   
   <meta name="author" content="Studio Ousia">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Features - Wikipedia2Vec</title>
+  <title>Basic Usage - Wikipedia2Vec</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Features";
-    var mkdocs_page_input_path = "features.md";
-    var mkdocs_page_url = "/features/";
+    var mkdocs_page_name = "Basic Usage";
+    var mkdocs_page_input_path = "usage.md";
+    var mkdocs_page_url = "/usage/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -57,23 +57,9 @@
     <a class="" href="../install/">Installation</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">Features</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#features">Features</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#extended-skip-gram-model-to-learn-embeddings-of-words-and-entities">Extended Skip-Gram Model to Learn Embeddings of Words and Entities</a></li>
-        
-            <li><a class="toctree-l3" href="#automatic-generation-of-entity-links">Automatic Generation of Entity Links</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../features/">Features</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -86,9 +72,15 @@
     <a class="" href="../commands/">Learning Embeddings</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="../usage/">Basic Usage</a>
+    <a class="current" href="./">Basic Usage</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#basic-usage">Basic Usage</a></li>
+    
+
+    </ul>
 	    </li>
           
         </ul>
@@ -113,10 +105,10 @@
     
       
     
-    <li>Features</li>
+    <li>Basic Usage</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/studio-ousia/wikipedia2vec/edit/master/docs/features.md"
+        <a href="https://github.com/studio-ousia/wikipedia2vec/edit/master/docs/usage.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -126,24 +118,35 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="features">Features</h1>
-<p>Wikipedia2Vec has two unique features that are designed to effectively learn embeddings from Wikipedia.</p>
-<h2 id="extended-skip-gram-model-to-learn-embeddings-of-words-and-entities">Extended Skip-Gram Model to Learn Embeddings of Words and Entities</h2>
-<p><img src="http://studio-ousia.github.io/wikipedia2vec/img/model.png" width="600" /></p>
-<p>Wikipedia2Vec is based on the <a href="https://en.wikipedia.org/wiki/Word2vec">Word2vec's skip-gram model</a> that learns to predict neighboring words given each word in corpora.
-We extend the skip-gram model by adding the following two submodels:</p>
-<ul>
-<li><em>The link graph model</em> that learns to estimate neighboring entities given an entity in the link graph of Wikipedia entities.</li>
-<li><em>The anchor context model</em> that learns to predict neighboring words given an entity by using a link that points to the entity and its neighboring words.</li>
-</ul>
-<p>By jointly optimizing the skip-gram model and these two submodels, our model simultaneously learns the embedding of words and entities from Wikipedia.
-For further details, please refer to our paper: <a href="https://arxiv.org/abs/1601.01343">Joint Learning of the Embedding of Words and Entities for Named Entity Disambiguation</a>.</p>
-<h2 id="automatic-generation-of-entity-links">Automatic Generation of Entity Links</h2>
-<p>Many entity names in Wikipedia do not appear as links because Wikipedia instructs its contributors <a href="https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style/Linking#Principles">to link an entity name if it is the first occurrence in the page</a>.
-This is problematic for our model because the anchor context model depends on entity links to generate contextual words of entities.</p>
-<p>To address this, we implement a feature that automatically links entity names that do not appear as links.
-In particular, it takes all words and phrases, and treats them as candidates of entity names if they exist in the <em>Mention DB</em> that contains mapping of an entity name (e.g., “Washington”) to a set of possible referent entities (e.g., Washington, D.C. and George Washington).
-Then, it converts an entity name to a link pointing to an entity if the entity name is unambiguous (i.e., there is only one referent entity associated to the entity name in the DB) or the entity is referred by an entity link in the same page.</p>
+                <h1 id="basic-usage">Basic Usage</h1>
+<pre><code class="python">&gt;&gt;&gt; from wikipedia2vec import Wikipedia2Vec
+
+&gt;&gt;&gt; wiki2vec = Wikipedia2Vec.load(MODEL_FILE)
+
+&gt;&gt;&gt; wiki2vec.get_word_vector('the')
+memmap([ 0.01617998, -0.03325786, -0.01397999, -0.00150471,  0.03237337,
+...
+       -0.04226106, -0.19677088, -0.31087297,  0.1071524 , -0.09824426], dtype=float32)
+
+&gt;&gt;&gt; wiki2vec.get_entity_vector('Scarlett Johansson')
+memmap([-0.19793572,  0.30861306,  0.29620451, -0.01193621,  0.18228433,
+...
+        0.04986198,  0.24383858, -0.01466644,  0.10835337, -0.0697331 ], dtype=float32)
+
+&gt;&gt;&gt; wiki2vec.most_similar(wiki2vec.get_word('yoda'), 5)
+[(&lt;Word yoda&gt;, 1.0),
+ (&lt;Entity Yoda&gt;, 0.84333622),
+ (&lt;Word darth&gt;, 0.73328167),
+ (&lt;Word kenobi&gt;, 0.7328127),
+ (&lt;Word jedi&gt;, 0.7223742)]
+
+&gt;&gt;&gt; wiki2vec.most_similar(wiki2vec.get_entity('Scarlett Johansson'), 5)
+[(&lt;Entity Scarlett Johansson&gt;, 1.0),
+ (&lt;Entity Natalie Portman&gt;, 0.75090045),
+ (&lt;Entity Eva Mendes&gt;, 0.73651594),
+ (&lt;Entity Emma Stone&gt;, 0.72868186),
+ (&lt;Entity Cameron Diaz&gt;, 0.72390842)]
+</code></pre>
               
             </div>
           </div>
@@ -151,10 +154,8 @@ Then, it converts an entity name to a link pointing to an entity if the entity n
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../pretrained/" class="btn btn-neutral float-right" title="Pretrained Embeddings">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-      
-        <a href="../install/" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../commands/" class="btn btn-neutral" title="Learning Embeddings"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -182,10 +183,8 @@ Then, it converts an entity name to a link pointing to an entity if the entity n
           <a href="https://github.com/studio-ousia/wikipedia2vec/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../install/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../commands/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
-      
-        <span style="margin-left: 15px"><a href="../pretrained/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
