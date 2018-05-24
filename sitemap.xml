@@ -11,14 +11,6 @@
 
     
     <url>
-     <loc>/install/</loc>
-     <lastmod>2018-05-24</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    
-
-    
-    <url>
      <loc>/features/</loc>
      <lastmod>2018-05-24</lastmod>
      <changefreq>daily</changefreq>
@@ -26,24 +18,30 @@
     
 
     
+        
     <url>
-     <loc>/pretrained/</loc>
+     <loc>/install/</loc>
      <lastmod>2018-05-24</lastmod>
      <changefreq>daily</changefreq>
     </url>
-    
-
-    
+        
     <url>
      <loc>/commands/</loc>
      <lastmod>2018-05-24</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
+    <url>
+     <loc>/usage/</loc>
+     <lastmod>2018-05-24</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
     
     <url>
-     <loc>/usage/</loc>
+     <loc>/pretrained/</loc>
      <lastmod>2018-05-24</lastmod>
      <changefreq>daily</changefreq>
     </url>
