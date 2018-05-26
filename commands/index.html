@@ -119,12 +119,12 @@
 <hr />
 <p>First, you need to download a source Wikipedia dump file (e.g., enwiki-latest-pages-articles.xml.bz2) from <a href="https://dumps.wikimedia.org/">Wikimedia Downloads</a>.
 The English dump file can be obtained by running the following command.</p>
-<pre><code class="bash">% wget https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2
+<pre><code class="text">% wget https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2
 </code></pre>
 
 <p>Note that you do not need to decompress the dump file.</p>
 <p>Then, the embeddings can be trained from a Wikipedia dump using the <em>train</em> command.</p>
-<pre><code class="bash">% wikipedia2vec train DUMP_FILE OUT_FILE
+<pre><code class="text">% wikipedia2vec train DUMP_FILE OUT_FILE
 </code></pre>
 
 <p><strong>Arguments:</strong></p>
@@ -162,7 +162,7 @@ The English dump file can be obtained by running the following command.</p>
 <p>The <em>train</em> command internally calls the five commands described below (namely, <em>build_dump_db</em>, <em>build_dictionary</em>, <em>build_link_graph</em>, <em>build_mention_db</em>, and <em>train_embedding</em>).</p>
 <h2 id="building-dump-database">Building Dump Database<a class="headerlink" href="#building-dump-database" title="Permanent link"></a></h2>
 <p>The <em>build_dump_db</em> command creates a database that contains Wikipedia pages each of which consists of texts and anchor links in it.</p>
-<pre><code class="bash">% wikipedia2vec build_dump_db DUMP_FILE OUT_FILE
+<pre><code class="text">% wikipedia2vec build_dump_db DUMP_FILE OUT_FILE
 </code></pre>
 
 <p><strong>Arguments:</strong></p>
@@ -176,7 +176,7 @@ The English dump file can be obtained by running the following command.</p>
 </ul>
 <h2 id="building-dictionary">Building Dictionary<a class="headerlink" href="#building-dictionary" title="Permanent link"></a></h2>
 <p>The <em>build_dictionary</em> command builds a dictionary of words and entities.</p>
-<pre><code class="bash">% wikipedia2vec build_dictionary DUMP_DB_FILE OUT_FILE
+<pre><code class="text">% wikipedia2vec build_dictionary DUMP_DB_FILE OUT_FILE
 </code></pre>
 
 <p><strong>Arguments:</strong></p>
@@ -197,7 +197,7 @@ The English dump file can be obtained by running the following command.</p>
 </ul>
 <h2 id="building-link-graph-optional">Building Link Graph (Optional)<a class="headerlink" href="#building-link-graph-optional" title="Permanent link"></a></h2>
 <p>The <em>build_link_graph</em> command generates a sparse matrix representing the link structure between Wikipedia entities.</p>
-<pre><code class="bash">% wikipedia2vec build_link_graph DUMP_DB_FILE DIC_FILE OUT_FILE
+<pre><code class="text">% wikipedia2vec build_link_graph DUMP_DB_FILE DIC_FILE OUT_FILE
 </code></pre>
 
 <p><strong>Arguments:</strong></p>
@@ -212,7 +212,7 @@ The English dump file can be obtained by running the following command.</p>
 </ul>
 <h2 id="building-mention-db-optional">Building Mention DB (Optional)<a class="headerlink" href="#building-mention-db-optional" title="Permanent link"></a></h2>
 <p>The <em>build_mention_db</em> command builds a database that contains the mappings of entity names (mentions) and their possible referent entities.</p>
-<pre><code class="bash">% wikipedia2vec build_mention_db DUMP_DB_FILE DIC_FILE OUT_FILE
+<pre><code class="text">% wikipedia2vec build_mention_db DUMP_DB_FILE DIC_FILE OUT_FILE
 </code></pre>
 
 <p><strong>Arguments:</strong></p>
@@ -232,7 +232,7 @@ The English dump file can be obtained by running the following command.</p>
 </ul>
 <h2 id="learning-embeddings_1">Learning Embeddings<a class="headerlink" href="#learning-embeddings_1" title="Permanent link"></a></h2>
 <p>The <em>train_embedding</em> command runs the training of the embeddings.</p>
-<pre><code class="bash">% wikipedia2vec train_embedding DUMP_DB_FILE DIC_FILE OUT_FILE
+<pre><code class="text">% wikipedia2vec train_embedding DUMP_DB_FILE DIC_FILE OUT_FILE
 </code></pre>
 
 <p><strong>Arguments:</strong></p>
@@ -261,7 +261,7 @@ The English dump file can be obtained by running the following command.</p>
 </ul>
 <h2 id="saving-embeddings-in-text-format">Saving Embeddings in Text Format<a class="headerlink" href="#saving-embeddings-in-text-format" title="Permanent link"></a></h2>
 <p><em>save_text</em> outputs a model in a text format.</p>
-<pre><code class="bash">% wikipedia2vec save_text MODEL_FILE OUT_FILE
+<pre><code class="text">% wikipedia2vec save_text MODEL_FILE OUT_FILE
 </code></pre>
 
 <p><strong>Arguments:</strong></p>
