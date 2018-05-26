@@ -111,9 +111,10 @@
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="features">Features</h1>
+<h1 id="features">Features<a class="headerlink" href="#features" title="Permanent link"></a></h1>
+<hr />
 <p>Wikipedia2Vec has two unique features that are designed to effectively learn embeddings from Wikipedia.</p>
-<h2 id="extended-skip-gram-model-to-learn-embeddings-of-words-and-entities">Extended Skip-Gram Model to Learn Embeddings of Words and Entities</h2>
+<h2 id="extended-skip-gram-model-to-learn-embeddings-of-words-and-entities">Extended Skip-Gram Model to Learn Embeddings of Words and Entities<a class="headerlink" href="#extended-skip-gram-model-to-learn-embeddings-of-words-and-entities" title="Permanent link"></a></h2>
 <p><img alt="Extended Skip-Gram Model" src="../img/model.png" /></p>
 <p>Wikipedia2Vec is based on the <a href="https://en.wikipedia.org/wiki/Word2vec">Word2vec's skip-gram model</a> that learns to predict neighboring words given each word in corpora.
 We extend the skip-gram model by adding the following two submodels:</p>
@@ -123,7 +124,7 @@ We extend the skip-gram model by adding the following two submodels:</p>
 </ul>
 <p>By jointly optimizing the skip-gram model and these two submodels, our model simultaneously learns the embedding of words and entities from Wikipedia.
 For further details, please refer to our paper: <a href="https://arxiv.org/abs/1601.01343">Joint Learning of the Embedding of Words and Entities for Named Entity Disambiguation</a>.</p>
-<h2 id="automatic-generation-of-entity-links">Automatic Generation of Entity Links</h2>
+<h2 id="automatic-generation-of-entity-links">Automatic Generation of Entity Links<a class="headerlink" href="#automatic-generation-of-entity-links" title="Permanent link"></a></h2>
 <p>Many entity names in Wikipedia do not appear as links because Wikipedia instructs its contributors <a href="https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style/Linking#Principles">to link an entity name if it is the first occurrence in the page</a>.
 This is problematic for our model because the anchor context model depends on entity links to generate contextual words of entities.</p>
 <p>To address this, we implement a feature that automatically links entity names that do not appear as links.
