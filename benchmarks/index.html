@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Studio Ousia">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Benchmarks - Wikipedia2Vec</title>
+        
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+        <link href="../css/extra.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,500" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="..">Wikipedia2Vec</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                    <li >
+                        <a href="../features/">Features</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">User Guide <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../install/">Installation</a>
+</li>
+                            
+<li >
+    <a href="../commands/">Learning Embeddings</a>
+</li>
+                            
+<li >
+    <a href="../usage/">Basic Usage</a>
+</li>
+                        </ul>
+                    </li>
+                    <li >
+                        <a href="../pretrained/">Pretrained Embeddings</a>
+                    </li>
+                    <li class="active">
+                        <a href="./">Benchmarks</a>
+                    </li>
+                    <li>
+                      <a href="http://projector.tensorflow.org/?config=https://wikipedia2vec.github.io/projector_files/config.json" target="_blank">Visualization</a>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../pretrained/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a rel="prev" >
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/wikipedia2vec/wikipedia2vec"><i class="fa fa-github"></i> GitHub</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#benchmarks">Benchmarks</a></li>
+            <li><a href="#about-the-evaluations">About The Evaluations</a></li>
+            <li><a href="#model-comparison-with-gensim">Model Comparison with Gensim</a></li>
+            <li><a href="#model-comparison-with-word2vec-glove">Model Comparison with word2vec, GloVe</a></li>
+            <li><a href="#comparison-with-state-of-the-art-entity-embeddings-method">Comparison with State of The Art Entity Embeddings Method</a></li>
+            <li><a href="#the-effects-of-parameter-tuning">The Effects of Parameter Tuning</a></li>
+            <li><a href="#multilingual-evaluation">Multilingual Evaluation</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="benchmarks">Benchmarks<a class="headerlink" href="#benchmarks" title="Permanent link"></a></h1>
+<hr />
+<p>We provide the performance on a variety of benchmarks for the Wikipedia2Vec pre-trained model.  </p>
+<p>Evaluations are conducted end-to-end, and we used  <a href="https://github.com/wikipedia2vec/wikipedia2vec/blob/master/scripts/intrinsic_eval.py">intrinsic_eval.py</a> under <code>scripts</code> directory of Wikipedia2Vec, to evaluate Wikipedia2Vec performance.</p>
+<h3 id="about-the-evaluations">About The Evaluations<a class="headerlink" href="#about-the-evaluations" title="Permanent link"></a></h3>
+<p>We conducted evaluations on a variety of intrinsic tasks.  </p>
+<p>Wikipedia2Vec learns embeddings that map words and entities into a unified continuous vector space, and in this experiment, we evaluated the learned embeddings of words and those of entities separately.  <br />
+In particular, we evaluated the word embeddings with <strong>Word Similarity</strong> and <strong>Word Analogy</strong>, while we evaluate the entity embeddings with <strong>Entity Relatedness</strong>.</p>
+<h4 id="word-similarity">Word Similarity<a class="headerlink" href="#word-similarity" title="Permanent link"></a></h4>
+<p>Word Similarity is a task for intrinsic evaluation of word embeddings,
+which correlates the distance between vectors and human judgments of semantic similarity.  </p>
+<ul>
+<li><a href="http://clic.cimec.unitn.it/~elia.bruni/MEN.html">MEN-TR-3k</a> (<a href="https://staff.fnwi.uva.nl/e.bruni/publications/bruni2014multimodal.pdf">Bruni et al.,2014</a>)</li>
+<li><a href="https://aclweb.org/aclwiki/RG-65_Test_Collection_(State_of_the_art)">RG-65</a>
+(<a href="https://dl.acm.org/citation.cfm?id=365657">Rubenstein et al., 1965</a>)</li>
+<li><a href="https://www.cl.cam.ac.uk/~fh295/simlex.html">SimLex999</a> (<a href="https://arxiv.org/abs/1408.3456?context=cs">Hill et al, 2014</a>)</li>
+<li><a href="http://www.cs.technion.ac.il/~gabr/resources/data/wordsim353/">WS-353-REL</a> (<a href="https://dl.acm.org/citation.cfm?id=503110">Finkelstein et al., 2002</a>)</li>
+<li><a href="http://www.cs.technion.ac.il/~gabr/resources/data/wordsim353/">WS-353-SIM</a> (<a href="https://dl.acm.org/citation.cfm?id=503110">Finkelstein et al., 2002</a>)</li>
+</ul>
+<h4 id="word-analogy">Word Analogy<a class="headerlink" href="#word-analogy" title="Permanent link"></a></h4>
+<p>Word Analogy is the task, which inspects syntactic, morphosyntactic and semantic properties of words and phrases.</p>
+<ul>
+<li><a href="http://download.tensorflow.org/data/questions-words.txt">GOOGLE ANALOGY (Syntactic)</a> (<a href="https://arxiv.org/pdf/1301.3781">Mikolov et al., 2013</a>)</li>
+<li><a href="http://download.tensorflow.org/data/questions-words.txt">GOOGLE ANALOGY (Semantic)</a> (<a href="https://arxiv.org/pdf/1301.3781">Mikolov et al., 2013</a>)</li>
+</ul>
+<h4 id="entity-relatedness">Entity Relatedness<a class="headerlink" href="#entity-relatedness" title="Permanent link"></a></h4>
+<p>Entity Relatedness is the intrinsic evaluation task for entities, where the quality of entity embeddings is evaluated using the human ratings of relatedness between entities.</p>
+<ul>
+<li><a href="https://www.mpi-inf.mpg.de/departments/databases-and-information-systems/research/yago-naga/aida/downloads/">KORE</a> (<a href="https://dl.acm.org/citation.cfm?id=2396832">Hoffart et al., 2012</a>)</li>
+</ul>
+<h2 id="model-comparison-with-gensim">Model Comparison with Gensim<a class="headerlink" href="#model-comparison-with-gensim" title="Permanent link"></a></h2>
+<p>In this section, we compare the performance on Word Similarity and Word Analogy
+benchmarks of our Wikipedia2Vec-trained model
+with the model trained by <a href="https://radimrehurek.com/gensim/">gensim</a>.<br />
+We do not compare the performance on Entity Relatedness here.</p>
+<p>For both embeddings, we set the <em>window size</em> to 5, <em>iteration</em> to 10, and
+<em>negative sampling count</em> to 15.<br />
+For training, we only used English Wikipedia dump, without adding any additional large-scale corpora.
+We used  <a href="https://github.com/wikipedia2vec/wikipedia2vec/blob/master/scripts/gensim_wikipedia.py">gensim_wikipedia.py</a> under <code>script</code> directory of Wikipedia2vec to train gensim-based word embeddings.</p>
+<p>The results on a variety of benckmarks show that Wikipedia2Vec pretrained model
+(<a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_300d.txt.bz2">enwiki_20180420_300d.pkl</a>) outperformed gensim pretrained model.</p>
+<!-- - enwiki_20180420_win10_300d.pkl
+- gensim_model_300d.pkl -->
+
+<h3 id="word-similarity_1">Word Similarity<a class="headerlink" href="#word-similarity_1" title="Permanent link"></a></h3>
+<p>We evaluated the performance on 6 Word Similarity benchmarks,
+and our Wikipedia2Vec pre-trained model outperformed gensim pretrained in almost all of
+the benchmarks.</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Wikipedia2Vec</th>
+<th>gensim</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MEN-TR-3k</td>
+<td><strong>0.749</strong></td>
+<td>0.7315</td>
+</tr>
+<tr>
+<td>RG-65</td>
+<td><strong>0.7837</strong></td>
+<td>0.7582</td>
+</tr>
+<tr>
+<td>SimLex999</td>
+<td><strong>0.3815</strong></td>
+<td>0.3471</td>
+</tr>
+<tr>
+<td>WS-353-ALL</td>
+<td><strong>0.6952</strong></td>
+<td>0.6933</td>
+</tr>
+<tr>
+<td>WS-353-REL</td>
+<td>0.6233</td>
+<td><strong>0.625</strong></td>
+</tr>
+<tr>
+<td>WS-353-SIM</td>
+<td>0.7597</td>
+<td><strong>0.7833</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="word-analogy_1">Word Analogy<a class="headerlink" href="#word-analogy_1" title="Permanent link"></a></h3>
+<p>In both of the Word Analogy tasks, the embeddings trained by Wikipedia2Vec
+significantly outperformed the embedding trained by gensim.</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Wikipedia2Vec</th>
+<th>gensim</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GOOGLE ANALOGY (Semantic)</td>
+<td><strong>0.7892</strong></td>
+<td>0.782</td>
+</tr>
+<tr>
+<td>GOOGLE ANALOGY (Syntactic)</td>
+<td><strong>0.6812</strong></td>
+<td>0.5783</td>
+</tr>
+</tbody>
+</table>
+<h2 id="model-comparison-with-word2vec-glove">Model Comparison with word2vec, GloVe<a class="headerlink" href="#model-comparison-with-word2vec-glove" title="Permanent link"></a></h2>
+<p>In this section, we compare the performance of
+<a href="https://code.google.com/archive/p/word2vec/">word2vec</a> and <a href="https://nlp.stanford.edu/projects/glove/">GloVe</a> pretrained embeddings
+and our Wikipedia2Vec word embeddings.  </p>
+<p>In the previous section, we compared the models only trained with English
+Wikipedia dump.<br />
+It is widely known that the quality of the word embeddings increases significantly
+with large amount of the training data.
+Therefore, we compare the performances of publicly available
+word embeddings trained with much larger amount of training data.</p>
+<p>We use <a href="https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit?usp=sharing">word2vec google_news pre-trained embedding</a>
+(100B words, 3M vocab),
+GloVe's <a href="http://nlp.stanford.edu/data/glove.42B.300d.zip">glove.42B.300d</a>
+(42B tokens, 1.9M vocab) and <a href="http://nlp.stanford.edu/data/glove.840B.300d.zip">glove.840B.300d</a>
+(840B tokens, 2.2M vocab) pre-trained embeddings.</p>
+<h3 id="word-similarity_2">Word Similarity<a class="headerlink" href="#word-similarity_2" title="Permanent link"></a></h3>
+<p>The glove.840B.300d outperformed our embeddings trained with Wikipedia on
+all of the benchmarks, benefiting from its huge vocabulary size and Common Crawl
+based huge training corpus.</p>
+<p>On the other hand, our Wikipedia2Vec pretrained vector outperformed word2vec_gnews and
+glove_42b_300d on some of the benchmarks,
+even though training corpora for these embeddings are three or four orders of
+magnitudes larger than the training corpus obtained only from Wikipedia.  </p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Wikipedia2Vec</th>
+<th>word2vec_gnews</th>
+<th>glove_42b_300d</th>
+<th>glove_840b_300d</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MEN-TR-3k</td>
+<td>0.749</td>
+<td>OOV</td>
+<td>0.7362</td>
+<td><strong>0.8016</strong></td>
+</tr>
+<tr>
+<td>RG-65</td>
+<td>0.7837</td>
+<td>0.7608</td>
+<td><strong>0.8171</strong></td>
+<td>0.7696</td>
+</tr>
+<tr>
+<td>SimLex999</td>
+<td>0.3815</td>
+<td><strong>0.442</strong></td>
+<td>0.3738</td>
+<td>0.4083</td>
+</tr>
+<tr>
+<td>WS-353-ALL</td>
+<td>0.6952</td>
+<td>0.7</td>
+<td>0.6321</td>
+<td><strong>0.7379</strong></td>
+</tr>
+<tr>
+<td>WS-353-REL</td>
+<td>0.6233</td>
+<td>0.6355</td>
+<td>0.5706</td>
+<td><strong>0.6876</strong></td>
+</tr>
+<tr>
+<td>WS-353-SIM</td>
+<td>0.7597</td>
+<td>0.7717</td>
+<td>0.6979</td>
+<td><strong>0.8031</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="word-analogy_2">Word Analogy<a class="headerlink" href="#word-analogy_2" title="Permanent link"></a></h3>
+<p>In Word Analogy evaluations, we found the same trend as Word Similarity,
+and Wikipedia2Vec embeddings shows competitive performance despite of its smaller scale training corpus.
+In both of the tasks, The word2vec_gnews shows out-of-vocabulary (OOV).</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Wikipedia2Vec</th>
+<th>glove_42b_300d</th>
+<th>glove_42b_300d</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GOOGLE ANALOGY (Semantic)</td>
+<td>0.7892</td>
+<td><strong>0.8185</strong></td>
+<td>0.794</td>
+</tr>
+<tr>
+<td>GOOGLE ANALOGY (Syntactic)</td>
+<td>0.6812</td>
+<td>0.6925</td>
+<td><strong>0.7567</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="comparison-with-state-of-the-art-entity-embeddings-method">Comparison with State of The Art Entity Embeddings Method<a class="headerlink" href="#comparison-with-state-of-the-art-entity-embeddings-method" title="Permanent link"></a></h2>
+<p><a href="http://www.semantic-web-journal.net/system/files/swj1495.pdf">Ristoski et.al</a> proposed <strong>RDF2Vec</strong>, an approach that learns entity embeddings using word embedding methods (i.e., CBOW and skip-gram) with RDF graphs as inputs.</p>
+<p>RDF2Vec model has achieved the state of the art performance on KORE dataset. <br />
+We compare Entity Relatedness performance of both of the models with the same word dimensionality.</p>
+<p>As shown in the table below, except for the only one category, Hollywood celebrities,
+Wikipedia2Vec achieved higher performance on KORE dataset.</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Wikipedia2Vec</th>
+<th>RDF2Vec (<a href="http://www.semantic-web-journal.net/system/files/swj1495.pdf">Ristoski et.al</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IT companies</td>
+<td><strong>0.7934</strong></td>
+<td>0.743</td>
+</tr>
+<tr>
+<td>Hollywood Celebrities</td>
+<td>0.6887</td>
+<td><strong>0.734</strong></td>
+</tr>
+<tr>
+<td>Television Series</td>
+<td><strong>0.6415</strong></td>
+<td>0.635</td>
+</tr>
+<tr>
+<td>Video Games</td>
+<td><strong>0.7261</strong></td>
+<td>0.669</td>
+</tr>
+<tr>
+<td>Chuck Norris</td>
+<td><strong>0.6286</strong></td>
+<td>0.628</td>
+</tr>
+<tr>
+<td>All</td>
+<td><strong>0.7084</strong></td>
+<td>0.692</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-effects-of-parameter-tuning">The Effects of Parameter Tuning<a class="headerlink" href="#the-effects-of-parameter-tuning" title="Permanent link"></a></h2>
+<p>We also provide benchmark evaluations of Wikipedia2Vec pretrained models,
+with different training settings to show how the performance varies on various hyper-parameters.
+All of the pre-trained models are available, and you can download them from the
+<a href="https://wikipedia2vec.github.io/wikipedia2vec/pretrained/">pretrained embeddings page</a>.</p>
+<h3 id="link-graph">Link Graph<a class="headerlink" href="#link-graph" title="Permanent link"></a></h3>
+<p>The link graph model that learns to estimate neighboring entities given an entity
+ in the link graph of Wikipedia entities.<br />
+We compared the performance of the link graph model with the no link graph model to
+see the effectiveness of the link graphs between entities.<br />
+Except for the link graph, we set all of the parameters to the same.
+For both embeddings, we set the <em>window size</em> to 5, <em>iteration</em> to 10, and
+<em>negative sampling count</em> to 15.</p>
+<h4 id="word-similarity_3">Word Similarity<a class="headerlink" href="#word-similarity_3" title="Permanent link"></a></h4>
+<p>In terms of the performance on Word Similarity task, no link graph model
+outperforms the link graph model.</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Wikipedia2Vec</th>
+<th>Wikipedia2Vec (no link graph)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MEN-TR-3k</td>
+<td>0.749</td>
+<td><strong>0.7467</strong></td>
+</tr>
+<tr>
+<td>RG-65</td>
+<td>0.7837</td>
+<td><strong>0.7987</strong></td>
+</tr>
+<tr>
+<td>SimLex999</td>
+<td>0.3815</td>
+<td><strong>0.3867</strong></td>
+</tr>
+<tr>
+<td>WS-353-ALL</td>
+<td>0.6952</td>
+<td><strong>0.7009</strong></td>
+</tr>
+<tr>
+<td>WS-353-REL</td>
+<td>0.6233</td>
+<td><strong>0.6304</strong></td>
+</tr>
+<tr>
+<td>WS-353-SIM</td>
+<td>0.7597</td>
+<td><strong>0.7643</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="word-analogy_3">Word Analogy<a class="headerlink" href="#word-analogy_3" title="Permanent link"></a></h4>
+<p>The link graph model achieves higher performance on both of the Word Analogy task.</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Wikipedia2Vec</th>
+<th>Wikipedia2Vec (no link graph)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GOOGLE ANALOGY (Semantic)</td>
+<td><strong>0.7892</strong></td>
+<td>0.7804</td>
+</tr>
+<tr>
+<td>GOOGLE ANALOGY (Syntactic)</td>
+<td><strong>0.6812</strong></td>
+<td>0.6703</td>
+</tr>
+</tbody>
+</table>
+<h4 id="entity-relatedness_1">Entity Relatedness<a class="headerlink" href="#entity-relatedness_1" title="Permanent link"></a></h4>
+<p>Unsurprisingly, without link graph, the model shows significantly huge drop in its
+performance in Entity Relatedness tasks, because of the lacking of the information
+about the entity relationship.</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Wikipedia2Vec</th>
+<th>Wikipedia2Vec (no link graph)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KORE</td>
+<td><strong>0.6905</strong></td>
+<td>0.5892</td>
+</tr>
+</tbody>
+</table>
+<h3 id="window-size">Window Size<a class="headerlink" href="#window-size" title="Permanent link"></a></h3>
+<p>Previous work shows that the window size for word embeddings training does matter.
+We conducted evaluation on Wikipedia2Vec models with different window sizes,
+to see how important the window size is for the performance on intrinsic evaluation tasks.</p>
+<p>We compare the performance of <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_300d.pkl.bz2">enwiki_20180420 (300d)</a> (Wikipedia2Vec (window=5)) with the one of
+<a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_win10_300d.pkl.bz2">enwiki_20180420_win10 (300d)</a> (Wikipedia2Vec (window=10)).</p>
+<p>For both embeddings, we set the <em>iteration</em> to 10, and
+<em>negative sampling count</em> to 15.<br />
+For training, we only use English Wikipedia dump, without adding any additional large-scale corpora.</p>
+<h4 id="word-similarity_4">Word Similarity<a class="headerlink" href="#word-similarity_4" title="Permanent link"></a></h4>
+<p>Our experimental results show that larger window size seems to improve the
+performance on Word Similarity, on the all benchmarks except SimLex999.</p>
+<p>It should be noted that <a href="http://aclweb.org/anthology/W/W16/W16-2501.pdf">Chiu et al.</a> showed
+that the performance on word similarity benchmarks like MEN-TR-3k have negative correlations with downstream tasks, while only SimLex999 has high correlation with extrinsic measures.
+They also observed that decreasing window size improves the performance on downstream tasks, while it leads to deterioration of performance on most of the Word Similarity benchmarks.</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Wikipedia2Vec (window=5)</th>
+<th>Wikipedia2Vec (window=10)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MEN-TR-3k</td>
+<td>0.749</td>
+<td><strong>0.7541</strong></td>
+</tr>
+<tr>
+<td>RG-65</td>
+<td>0.7837</td>
+<td><strong>0.7861</strong></td>
+</tr>
+<tr>
+<td>SimLex999</td>
+<td><strong>0.3815</strong></td>
+<td>0.3578</td>
+</tr>
+<tr>
+<td>WS-353-ALL</td>
+<td>0.6952</td>
+<td><strong>0.71</strong></td>
+</tr>
+<tr>
+<td>WS-353-REL</td>
+<td>0.6233</td>
+<td><strong>0.6435</strong></td>
+</tr>
+<tr>
+<td>WS-353-SIM</td>
+<td>0.7597</td>
+<td><strong>0.7848</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="word-analogy_4">Word Analogy<a class="headerlink" href="#word-analogy_4" title="Permanent link"></a></h4>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Wikipedia2Vec (window=5)</th>
+<th>Wikipedia2Vec (window=10)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GOOGLE ANALOGY (Semantic)</td>
+<td><strong>0.7892</strong></td>
+<td>0.789</td>
+</tr>
+<tr>
+<td>GOOGLE ANALOGY (Syntactic)</td>
+<td><strong>0.6812</strong></td>
+<td>0.6529</td>
+</tr>
+</tbody>
+</table>
+<h4 id="entity-relatedness_2">Entity Relatedness<a class="headerlink" href="#entity-relatedness_2" title="Permanent link"></a></h4>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Wikipedia2Vec (window=5)</th>
+<th>Wikipedia2Vec (window=10)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KORE</td>
+<td><strong>0.6905</strong></td>
+<td>0.6811</td>
+</tr>
+</tbody>
+</table>
+<h2 id="multilingual-evaluation">Multilingual Evaluation<a class="headerlink" href="#multilingual-evaluation" title="Permanent link"></a></h2>
+<p>We evaluate our word embeddings (300d) on German, French, Spanish, Portuguese, Polish and Chinese
+word analogy task.</p>
+<h4 id="multilingual-word-analogy-dataset">Multilingual Word Analogy Dataset<a class="headerlink" href="#multilingual-word-analogy-dataset" title="Permanent link"></a></h4>
+<p>We use the same word analogy dataset as <a href="https://arxiv.org/abs/1802.06893">Grave et.al</a>.</p>
+<ul>
+<li><a href="https://github.com/wikipedia2vec/wikipedia2vec/blob/master/data/de/word/analogy/DE-GOOGLE.txt">Google Analogy Dataset (German)</a></li>
+<li><a href="https://github.com/wikipedia2vec/wikipedia2vec/blob/master/data/fr/word/analogy/FR-GOOGLE.txt">Google Analogy Dataset (French)</a></li>
+<li><a href="https://github.com/wikipedia2vec/wikipedia2vec/blob/master/data/es/word/analogy/ES-GOOGLE.txt">Google Analogy Dataset (Spanish)</a></li>
+<li><a href="https://github.com/wikipedia2vec/wikipedia2vec/blob/master/data/pt/word/analogy/PT-GOOGLE.txt">Google Analogy Dataset (Portuguese)</a></li>
+<li><a href="https://github.com/wikipedia2vec/wikipedia2vec/blob/master/data/pl/word/analogy/PL-GOOGLE.txt">Google Analogy Dataset (Polish)</a></li>
+<li><a href="https://github.com/wikipedia2vec/wikipedia2vec/blob/master/data/zh/word/analogy/ZH-GOOGLE.txt">Google Analogy Dataset (Chinese)</a></li>
+</ul>
+<h4 id="multilingual-word-analogy-results">Multilingual Word Analogy Results<a class="headerlink" href="#multilingual-word-analogy-results" title="Permanent link"></a></h4>
+<p>The results of word analogy task evaluation are as follows.<br />
+Following <a href="https://arxiv.org/abs/1802.06893">Grave et.al</a>, we restrict the vocabulary for the analogy tasks to the 200,000 most frequent words from the training data.</p>
+<table>
+<thead>
+<tr>
+<th>language</th>
+<th>Wikipedia2Vec</th>
+<th>fastText (<a href="https://arxiv.org/abs/1802.06893">Grave et.al</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>German</td>
+<td><strong>0.617</strong></td>
+<td>0.61</td>
+</tr>
+<tr>
+<td>French</td>
+<td><strong>0.68</strong></td>
+<td>0.642</td>
+</tr>
+<tr>
+<td>Spanish</td>
+<td><strong>0.574</strong></td>
+<td><strong>0.574</strong></td>
+</tr>
+<tr>
+<td>Portuguese</td>
+<td>0.53</td>
+<td><strong>0.54</strong></td>
+</tr>
+<tr>
+<td>Polish</td>
+<td>0.516</td>
+<td><strong>0.534</strong></td>
+</tr>
+<tr>
+<td>Chinese</td>
+<td>0.572</td>
+<td><strong>0.631</strong></td>
+</tr>
+</tbody>
+</table></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="https://buttons.github.io/buttons.js"></script>
+        
+        <script>var base_url = '..';</script>
+        <script src="../js/base.js"></script>
+        <script src="../search/require.js"></script>
+        <script src="../search/search.js"></script>
+
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>&larr;</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>&rarr;</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    </body>
+</html>

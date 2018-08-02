@@ -169,6 +169,131 @@
             "location": "/pretrained/#spanish",
             "text": "eswiki_20180420  (window=5, iteration=10, negative=15):\n   100d (bin) \n   100d (txt) \n   300d (bin) \n   300d (txt)",
             "title": "Spanish"
+        },
+        {
+            "location": "/benchmarks/",
+            "text": "Benchmarks\n\uf0c1\n\n\n\n\nWe provide the performance on a variety of benchmarks for the Wikipedia2Vec pre-trained model.  \n\n\nEvaluations are conducted end-to-end, and we used  \nintrinsic_eval.py\n under \nscripts\n directory of Wikipedia2Vec, to evaluate Wikipedia2Vec performance.\n\n\nAbout The Evaluations\n\uf0c1\n\n\nWe conducted evaluations on a variety of intrinsic tasks.  \n\n\nWikipedia2Vec learns embeddings that map words and entities into a unified continuous vector space, and in this experiment, we evaluated the learned embeddings of words and those of entities separately.  \n\nIn particular, we evaluated the word embeddings with \nWord Similarity\n and \nWord Analogy\n, while we evaluate the entity embeddings with \nEntity Relatedness\n.\n\n\nWord Similarity\n\uf0c1\n\n\nWord Similarity is a task for intrinsic evaluation of word embeddings,\nwhich correlates the distance between vectors and human judgments of semantic similarity.  \n\n\n\n\nMEN-TR-3k\n (\nBruni et al.,2014\n)\n\n\nRG-65\n\n(\nRubenstein et al., 1965\n)\n\n\nSimLex999\n (\nHill et al, 2014\n)\n\n\nWS-353-REL\n (\nFinkelstein et al., 2002\n)\n\n\nWS-353-SIM\n (\nFinkelstein et al., 2002\n)\n\n\n\n\nWord Analogy\n\uf0c1\n\n\nWord Analogy is the task, which inspects syntactic, morphosyntactic and semantic properties of words and phrases.\n\n\n\n\nGOOGLE ANALOGY (Syntactic)\n (\nMikolov et al., 2013\n)\n\n\nGOOGLE ANALOGY (Semantic)\n (\nMikolov et al., 2013\n)\n\n\n\n\nEntity Relatedness\n\uf0c1\n\n\nEntity Relatedness is the intrinsic evaluation task for entities, where the quality of entity embeddings is evaluated using the human ratings of relatedness between entities.\n\n\n\n\nKORE\n (\nHoffart et al., 2012\n)\n\n\n\n\nModel Comparison with Gensim\n\uf0c1\n\n\nIn this section, we compare the performance on Word Similarity and Word Analogy\nbenchmarks of our Wikipedia2Vec-trained model\nwith the model trained by \ngensim\n.\n\nWe do not compare the performance on Entity Relatedness here.\n\n\nFor both embeddings, we set the \nwindow size\n to 5, \niteration\n to 10, and\n\nnegative sampling count\n to 15.\n\nFor training, we only used English Wikipedia dump, without adding any additional large-scale corpora.\nWe used  \ngensim_wikipedia.py\n under \nscript\n directory of Wikipedia2vec to train gensim-based word embeddings.\n\n\nThe results on a variety of benckmarks show that Wikipedia2Vec pretrained model\n(\nenwiki_20180420_300d.pkl\n) outperformed gensim pretrained model.\n\n\n\n\n\nWord Similarity\n\uf0c1\n\n\nWe evaluated the performance on 6 Word Similarity benchmarks,\nand our Wikipedia2Vec pre-trained model outperformed gensim pretrained in almost all of\nthe benchmarks.\n\n\n\n\n\n\n\n\nDataset\n\n\nWikipedia2Vec\n\n\ngensim\n\n\n\n\n\n\n\n\n\n\nMEN-TR-3k\n\n\n0.749\n\n\n0.7315\n\n\n\n\n\n\nRG-65\n\n\n0.7837\n\n\n0.7582\n\n\n\n\n\n\nSimLex999\n\n\n0.3815\n\n\n0.3471\n\n\n\n\n\n\nWS-353-ALL\n\n\n0.6952\n\n\n0.6933\n\n\n\n\n\n\nWS-353-REL\n\n\n0.6233\n\n\n0.625\n\n\n\n\n\n\nWS-353-SIM\n\n\n0.7597\n\n\n0.7833\n\n\n\n\n\n\n\n\nWord Analogy\n\uf0c1\n\n\nIn both of the Word Analogy tasks, the embeddings trained by Wikipedia2Vec\nsignificantly outperformed the embedding trained by gensim.\n\n\n\n\n\n\n\n\nDataset\n\n\nWikipedia2Vec\n\n\ngensim\n\n\n\n\n\n\n\n\n\n\nGOOGLE ANALOGY (Semantic)\n\n\n0.7892\n\n\n0.782\n\n\n\n\n\n\nGOOGLE ANALOGY (Syntactic)\n\n\n0.6812\n\n\n0.5783\n\n\n\n\n\n\n\n\nModel Comparison with word2vec, GloVe\n\uf0c1\n\n\nIn this section, we compare the performance of\n\nword2vec\n and \nGloVe\n pretrained embeddings\nand our Wikipedia2Vec word embeddings.  \n\n\nIn the previous section, we compared the models only trained with English\nWikipedia dump.\n\nIt is widely known that the quality of the word embeddings increases significantly\nwith large amount of the training data.\nTherefore, we compare the performances of publicly available\nword embeddings trained with much larger amount of training data.\n\n\nWe use \nword2vec google_news pre-trained embedding\n\n(100B words, 3M vocab),\nGloVe's \nglove.42B.300d\n\n(42B tokens, 1.9M vocab) and \nglove.840B.300d\n\n(840B tokens, 2.2M vocab) pre-trained embeddings.\n\n\nWord Similarity\n\uf0c1\n\n\nThe glove.840B.300d outperformed our embeddings trained with Wikipedia on\nall of the benchmarks, benefiting from its huge vocabulary size and Common Crawl\nbased huge training corpus.\n\n\nOn the other hand, our Wikipedia2Vec pretrained vector outperformed word2vec_gnews and\nglove_42b_300d on some of the benchmarks,\neven though training corpora for these embeddings are three or four orders of\nmagnitudes larger than the training corpus obtained only from Wikipedia.  \n\n\n\n\n\n\n\n\nDataset\n\n\nWikipedia2Vec\n\n\nword2vec_gnews\n\n\nglove_42b_300d\n\n\nglove_840b_300d\n\n\n\n\n\n\n\n\n\n\nMEN-TR-3k\n\n\n0.749\n\n\nOOV\n\n\n0.7362\n\n\n0.8016\n\n\n\n\n\n\nRG-65\n\n\n0.7837\n\n\n0.7608\n\n\n0.8171\n\n\n0.7696\n\n\n\n\n\n\nSimLex999\n\n\n0.3815\n\n\n0.442\n\n\n0.3738\n\n\n0.4083\n\n\n\n\n\n\nWS-353-ALL\n\n\n0.6952\n\n\n0.7\n\n\n0.6321\n\n\n0.7379\n\n\n\n\n\n\nWS-353-REL\n\n\n0.6233\n\n\n0.6355\n\n\n0.5706\n\n\n0.6876\n\n\n\n\n\n\nWS-353-SIM\n\n\n0.7597\n\n\n0.7717\n\n\n0.6979\n\n\n0.8031\n\n\n\n\n\n\n\n\nWord Analogy\n\uf0c1\n\n\nIn Word Analogy evaluations, we found the same trend as Word Similarity,\nand Wikipedia2Vec embeddings shows competitive performance despite of its smaller scale training corpus.\nIn both of the tasks, The word2vec_gnews shows out-of-vocabulary (OOV).\n\n\n\n\n\n\n\n\nDataset\n\n\nWikipedia2Vec\n\n\nglove_42b_300d\n\n\nglove_42b_300d\n\n\n\n\n\n\n\n\n\n\nGOOGLE ANALOGY (Semantic)\n\n\n0.7892\n\n\n0.8185\n\n\n0.794\n\n\n\n\n\n\nGOOGLE ANALOGY (Syntactic)\n\n\n0.6812\n\n\n0.6925\n\n\n0.7567\n\n\n\n\n\n\n\n\nComparison with State of The Art Entity Embeddings Method\n\uf0c1\n\n\nRistoski et.al\n proposed \nRDF2Vec\n, an approach that learns entity embeddings using word embedding methods (i.e., CBOW and skip-gram) with RDF graphs as inputs.\n\n\nRDF2Vec model has achieved the state of the art performance on KORE dataset. \n\nWe compare Entity Relatedness performance of both of the models with the same word dimensionality.\n\n\nAs shown in the table below, except for the only one category, Hollywood celebrities,\nWikipedia2Vec achieved higher performance on KORE dataset.\n\n\n\n\n\n\n\n\nCategory\n\n\nWikipedia2Vec\n\n\nRDF2Vec (\nRistoski et.al\n)\n\n\n\n\n\n\n\n\n\n\nIT companies\n\n\n0.7934\n\n\n0.743\n\n\n\n\n\n\nHollywood Celebrities\n\n\n0.6887\n\n\n0.734\n\n\n\n\n\n\nTelevision Series\n\n\n0.6415\n\n\n0.635\n\n\n\n\n\n\nVideo Games\n\n\n0.7261\n\n\n0.669\n\n\n\n\n\n\nChuck Norris\n\n\n0.6286\n\n\n0.628\n\n\n\n\n\n\nAll\n\n\n0.7084\n\n\n0.692\n\n\n\n\n\n\n\n\nThe Effects of Parameter Tuning\n\uf0c1\n\n\nWe also provide benchmark evaluations of Wikipedia2Vec pretrained models,\nwith different training settings to show how the performance varies on various hyper-parameters.\nAll of the pre-trained models are available, and you can download them from the\n\npretrained embeddings page\n.\n\n\nLink Graph\n\uf0c1\n\n\nThe link graph model that learns to estimate neighboring entities given an entity\n in the link graph of Wikipedia entities.\n\nWe compared the performance of the link graph model with the no link graph model to\nsee the effectiveness of the link graphs between entities.\n\nExcept for the link graph, we set all of the parameters to the same.\nFor both embeddings, we set the \nwindow size\n to 5, \niteration\n to 10, and\n\nnegative sampling count\n to 15.\n\n\nWord Similarity\n\uf0c1\n\n\nIn terms of the performance on Word Similarity task, no link graph model\noutperforms the link graph model.\n\n\n\n\n\n\n\n\nDataset\n\n\nWikipedia2Vec\n\n\nWikipedia2Vec (no link graph)\n\n\n\n\n\n\n\n\n\n\nMEN-TR-3k\n\n\n0.749\n\n\n0.7467\n\n\n\n\n\n\nRG-65\n\n\n0.7837\n\n\n0.7987\n\n\n\n\n\n\nSimLex999\n\n\n0.3815\n\n\n0.3867\n\n\n\n\n\n\nWS-353-ALL\n\n\n0.6952\n\n\n0.7009\n\n\n\n\n\n\nWS-353-REL\n\n\n0.6233\n\n\n0.6304\n\n\n\n\n\n\nWS-353-SIM\n\n\n0.7597\n\n\n0.7643\n\n\n\n\n\n\n\n\nWord Analogy\n\uf0c1\n\n\nThe link graph model achieves higher performance on both of the Word Analogy task.\n\n\n\n\n\n\n\n\nDataset\n\n\nWikipedia2Vec\n\n\nWikipedia2Vec (no link graph)\n\n\n\n\n\n\n\n\n\n\nGOOGLE ANALOGY (Semantic)\n\n\n0.7892\n\n\n0.7804\n\n\n\n\n\n\nGOOGLE ANALOGY (Syntactic)\n\n\n0.6812\n\n\n0.6703\n\n\n\n\n\n\n\n\nEntity Relatedness\n\uf0c1\n\n\nUnsurprisingly, without link graph, the model shows significantly huge drop in its\nperformance in Entity Relatedness tasks, because of the lacking of the information\nabout the entity relationship.\n\n\n\n\n\n\n\n\nDataset\n\n\nWikipedia2Vec\n\n\nWikipedia2Vec (no link graph)\n\n\n\n\n\n\n\n\n\n\nKORE\n\n\n0.6905\n\n\n0.5892\n\n\n\n\n\n\n\n\nWindow Size\n\uf0c1\n\n\nPrevious work shows that the window size for word embeddings training does matter.\nWe conducted evaluation on Wikipedia2Vec models with different window sizes,\nto see how important the window size is for the performance on intrinsic evaluation tasks.\n\n\nWe compare the performance of \nenwiki_20180420 (300d)\n (Wikipedia2Vec (window=5)) with the one of\n\nenwiki_20180420_win10 (300d)\n (Wikipedia2Vec (window=10)).\n\n\nFor both embeddings, we set the \niteration\n to 10, and\n\nnegative sampling count\n to 15.\n\nFor training, we only use English Wikipedia dump, without adding any additional large-scale corpora.\n\n\nWord Similarity\n\uf0c1\n\n\nOur experimental results show that larger window size seems to improve the\nperformance on Word Similarity, on the all benchmarks except SimLex999.\n\n\nIt should be noted that \nChiu et al.\n showed\nthat the performance on word similarity benchmarks like MEN-TR-3k have negative correlations with downstream tasks, while only SimLex999 has high correlation with extrinsic measures.\nThey also observed that decreasing window size improves the performance on downstream tasks, while it leads to deterioration of performance on most of the Word Similarity benchmarks.\n\n\n\n\n\n\n\n\nDataset\n\n\nWikipedia2Vec (window=5)\n\n\nWikipedia2Vec (window=10)\n\n\n\n\n\n\n\n\n\n\nMEN-TR-3k\n\n\n0.749\n\n\n0.7541\n\n\n\n\n\n\nRG-65\n\n\n0.7837\n\n\n0.7861\n\n\n\n\n\n\nSimLex999\n\n\n0.3815\n\n\n0.3578\n\n\n\n\n\n\nWS-353-ALL\n\n\n0.6952\n\n\n0.71\n\n\n\n\n\n\nWS-353-REL\n\n\n0.6233\n\n\n0.6435\n\n\n\n\n\n\nWS-353-SIM\n\n\n0.7597\n\n\n0.7848\n\n\n\n\n\n\n\n\nWord Analogy\n\uf0c1\n\n\n\n\n\n\n\n\nDataset\n\n\nWikipedia2Vec (window=5)\n\n\nWikipedia2Vec (window=10)\n\n\n\n\n\n\n\n\n\n\nGOOGLE ANALOGY (Semantic)\n\n\n0.7892\n\n\n0.789\n\n\n\n\n\n\nGOOGLE ANALOGY (Syntactic)\n\n\n0.6812\n\n\n0.6529\n\n\n\n\n\n\n\n\nEntity Relatedness\n\uf0c1\n\n\n\n\n\n\n\n\nDataset\n\n\nWikipedia2Vec (window=5)\n\n\nWikipedia2Vec (window=10)\n\n\n\n\n\n\n\n\n\n\nKORE\n\n\n0.6905\n\n\n0.6811\n\n\n\n\n\n\n\n\nMultilingual Evaluation\n\uf0c1\n\n\nWe evaluate our word embeddings (300d) on German, French, Spanish, Portuguese, Polish and Chinese\nword analogy task.\n\n\nMultilingual Word Analogy Dataset\n\uf0c1\n\n\nWe use the same word analogy dataset as \nGrave et.al\n.\n\n\n\n\nGoogle Analogy Dataset (German)\n\n\nGoogle Analogy Dataset (French)\n\n\nGoogle Analogy Dataset (Spanish)\n\n\nGoogle Analogy Dataset (Portuguese)\n\n\nGoogle Analogy Dataset (Polish)\n\n\nGoogle Analogy Dataset (Chinese)\n\n\n\n\nMultilingual Word Analogy Results\n\uf0c1\n\n\nThe results of word analogy task evaluation are as follows.\n\nFollowing \nGrave et.al\n, we restrict the vocabulary for the analogy tasks to the 200,000 most frequent words from the training data.\n\n\n\n\n\n\n\n\nlanguage\n\n\nWikipedia2Vec\n\n\nfastText (\nGrave et.al\n)\n\n\n\n\n\n\n\n\n\n\nGerman\n\n\n0.617\n\n\n0.61\n\n\n\n\n\n\nFrench\n\n\n0.68\n\n\n0.642\n\n\n\n\n\n\nSpanish\n\n\n0.574\n\n\n0.574\n\n\n\n\n\n\nPortuguese\n\n\n0.53\n\n\n0.54\n\n\n\n\n\n\nPolish\n\n\n0.516\n\n\n0.534\n\n\n\n\n\n\nChinese\n\n\n0.572\n\n\n0.631",
+            "title": "Benchmarks"
+        },
+        {
+            "location": "/benchmarks/#benchmarks",
+            "text": "We provide the performance on a variety of benchmarks for the Wikipedia2Vec pre-trained model.    Evaluations are conducted end-to-end, and we used   intrinsic_eval.py  under  scripts  directory of Wikipedia2Vec, to evaluate Wikipedia2Vec performance.",
+            "title": "Benchmarks"
+        },
+        {
+            "location": "/benchmarks/#about-the-evaluations",
+            "text": "We conducted evaluations on a variety of intrinsic tasks.    Wikipedia2Vec learns embeddings that map words and entities into a unified continuous vector space, and in this experiment, we evaluated the learned embeddings of words and those of entities separately.   \nIn particular, we evaluated the word embeddings with  Word Similarity  and  Word Analogy , while we evaluate the entity embeddings with  Entity Relatedness .",
+            "title": "About The Evaluations"
+        },
+        {
+            "location": "/benchmarks/#word-similarity",
+            "text": "Word Similarity is a task for intrinsic evaluation of word embeddings,\nwhich correlates the distance between vectors and human judgments of semantic similarity.     MEN-TR-3k  ( Bruni et al.,2014 )  RG-65 \n( Rubenstein et al., 1965 )  SimLex999  ( Hill et al, 2014 )  WS-353-REL  ( Finkelstein et al., 2002 )  WS-353-SIM  ( Finkelstein et al., 2002 )",
+            "title": "Word Similarity"
+        },
+        {
+            "location": "/benchmarks/#word-analogy",
+            "text": "Word Analogy is the task, which inspects syntactic, morphosyntactic and semantic properties of words and phrases.   GOOGLE ANALOGY (Syntactic)  ( Mikolov et al., 2013 )  GOOGLE ANALOGY (Semantic)  ( Mikolov et al., 2013 )",
+            "title": "Word Analogy"
+        },
+        {
+            "location": "/benchmarks/#entity-relatedness",
+            "text": "Entity Relatedness is the intrinsic evaluation task for entities, where the quality of entity embeddings is evaluated using the human ratings of relatedness between entities.   KORE  ( Hoffart et al., 2012 )",
+            "title": "Entity Relatedness"
+        },
+        {
+            "location": "/benchmarks/#model-comparison-with-gensim",
+            "text": "In this section, we compare the performance on Word Similarity and Word Analogy\nbenchmarks of our Wikipedia2Vec-trained model\nwith the model trained by  gensim . \nWe do not compare the performance on Entity Relatedness here.  For both embeddings, we set the  window size  to 5,  iteration  to 10, and negative sampling count  to 15. \nFor training, we only used English Wikipedia dump, without adding any additional large-scale corpora.\nWe used   gensim_wikipedia.py  under  script  directory of Wikipedia2vec to train gensim-based word embeddings.  The results on a variety of benckmarks show that Wikipedia2Vec pretrained model\n( enwiki_20180420_300d.pkl ) outperformed gensim pretrained model.",
+            "title": "Model Comparison with Gensim"
+        },
+        {
+            "location": "/benchmarks/#word-similarity_1",
+            "text": "We evaluated the performance on 6 Word Similarity benchmarks,\nand our Wikipedia2Vec pre-trained model outperformed gensim pretrained in almost all of\nthe benchmarks.     Dataset  Wikipedia2Vec  gensim      MEN-TR-3k  0.749  0.7315    RG-65  0.7837  0.7582    SimLex999  0.3815  0.3471    WS-353-ALL  0.6952  0.6933    WS-353-REL  0.6233  0.625    WS-353-SIM  0.7597  0.7833",
+            "title": "Word Similarity"
+        },
+        {
+            "location": "/benchmarks/#word-analogy_1",
+            "text": "In both of the Word Analogy tasks, the embeddings trained by Wikipedia2Vec\nsignificantly outperformed the embedding trained by gensim.     Dataset  Wikipedia2Vec  gensim      GOOGLE ANALOGY (Semantic)  0.7892  0.782    GOOGLE ANALOGY (Syntactic)  0.6812  0.5783",
+            "title": "Word Analogy"
+        },
+        {
+            "location": "/benchmarks/#model-comparison-with-word2vec-glove",
+            "text": "In this section, we compare the performance of word2vec  and  GloVe  pretrained embeddings\nand our Wikipedia2Vec word embeddings.    In the previous section, we compared the models only trained with English\nWikipedia dump. \nIt is widely known that the quality of the word embeddings increases significantly\nwith large amount of the training data.\nTherefore, we compare the performances of publicly available\nword embeddings trained with much larger amount of training data.  We use  word2vec google_news pre-trained embedding \n(100B words, 3M vocab),\nGloVe's  glove.42B.300d \n(42B tokens, 1.9M vocab) and  glove.840B.300d \n(840B tokens, 2.2M vocab) pre-trained embeddings.",
+            "title": "Model Comparison with word2vec, GloVe"
+        },
+        {
+            "location": "/benchmarks/#word-similarity_2",
+            "text": "The glove.840B.300d outperformed our embeddings trained with Wikipedia on\nall of the benchmarks, benefiting from its huge vocabulary size and Common Crawl\nbased huge training corpus.  On the other hand, our Wikipedia2Vec pretrained vector outperformed word2vec_gnews and\nglove_42b_300d on some of the benchmarks,\neven though training corpora for these embeddings are three or four orders of\nmagnitudes larger than the training corpus obtained only from Wikipedia.       Dataset  Wikipedia2Vec  word2vec_gnews  glove_42b_300d  glove_840b_300d      MEN-TR-3k  0.749  OOV  0.7362  0.8016    RG-65  0.7837  0.7608  0.8171  0.7696    SimLex999  0.3815  0.442  0.3738  0.4083    WS-353-ALL  0.6952  0.7  0.6321  0.7379    WS-353-REL  0.6233  0.6355  0.5706  0.6876    WS-353-SIM  0.7597  0.7717  0.6979  0.8031",
+            "title": "Word Similarity"
+        },
+        {
+            "location": "/benchmarks/#word-analogy_2",
+            "text": "In Word Analogy evaluations, we found the same trend as Word Similarity,\nand Wikipedia2Vec embeddings shows competitive performance despite of its smaller scale training corpus.\nIn both of the tasks, The word2vec_gnews shows out-of-vocabulary (OOV).     Dataset  Wikipedia2Vec  glove_42b_300d  glove_42b_300d      GOOGLE ANALOGY (Semantic)  0.7892  0.8185  0.794    GOOGLE ANALOGY (Syntactic)  0.6812  0.6925  0.7567",
+            "title": "Word Analogy"
+        },
+        {
+            "location": "/benchmarks/#comparison-with-state-of-the-art-entity-embeddings-method",
+            "text": "Ristoski et.al  proposed  RDF2Vec , an approach that learns entity embeddings using word embedding methods (i.e., CBOW and skip-gram) with RDF graphs as inputs.  RDF2Vec model has achieved the state of the art performance on KORE dataset.  \nWe compare Entity Relatedness performance of both of the models with the same word dimensionality.  As shown in the table below, except for the only one category, Hollywood celebrities,\nWikipedia2Vec achieved higher performance on KORE dataset.     Category  Wikipedia2Vec  RDF2Vec ( Ristoski et.al )      IT companies  0.7934  0.743    Hollywood Celebrities  0.6887  0.734    Television Series  0.6415  0.635    Video Games  0.7261  0.669    Chuck Norris  0.6286  0.628    All  0.7084  0.692",
+            "title": "Comparison with State of The Art Entity Embeddings Method"
+        },
+        {
+            "location": "/benchmarks/#the-effects-of-parameter-tuning",
+            "text": "We also provide benchmark evaluations of Wikipedia2Vec pretrained models,\nwith different training settings to show how the performance varies on various hyper-parameters.\nAll of the pre-trained models are available, and you can download them from the pretrained embeddings page .",
+            "title": "The Effects of Parameter Tuning"
+        },
+        {
+            "location": "/benchmarks/#link-graph",
+            "text": "The link graph model that learns to estimate neighboring entities given an entity\n in the link graph of Wikipedia entities. \nWe compared the performance of the link graph model with the no link graph model to\nsee the effectiveness of the link graphs between entities. \nExcept for the link graph, we set all of the parameters to the same.\nFor both embeddings, we set the  window size  to 5,  iteration  to 10, and negative sampling count  to 15.",
+            "title": "Link Graph"
+        },
+        {
+            "location": "/benchmarks/#word-similarity_3",
+            "text": "In terms of the performance on Word Similarity task, no link graph model\noutperforms the link graph model.     Dataset  Wikipedia2Vec  Wikipedia2Vec (no link graph)      MEN-TR-3k  0.749  0.7467    RG-65  0.7837  0.7987    SimLex999  0.3815  0.3867    WS-353-ALL  0.6952  0.7009    WS-353-REL  0.6233  0.6304    WS-353-SIM  0.7597  0.7643",
+            "title": "Word Similarity"
+        },
+        {
+            "location": "/benchmarks/#word-analogy_3",
+            "text": "The link graph model achieves higher performance on both of the Word Analogy task.     Dataset  Wikipedia2Vec  Wikipedia2Vec (no link graph)      GOOGLE ANALOGY (Semantic)  0.7892  0.7804    GOOGLE ANALOGY (Syntactic)  0.6812  0.6703",
+            "title": "Word Analogy"
+        },
+        {
+            "location": "/benchmarks/#entity-relatedness_1",
+            "text": "Unsurprisingly, without link graph, the model shows significantly huge drop in its\nperformance in Entity Relatedness tasks, because of the lacking of the information\nabout the entity relationship.     Dataset  Wikipedia2Vec  Wikipedia2Vec (no link graph)      KORE  0.6905  0.5892",
+            "title": "Entity Relatedness"
+        },
+        {
+            "location": "/benchmarks/#window-size",
+            "text": "Previous work shows that the window size for word embeddings training does matter.\nWe conducted evaluation on Wikipedia2Vec models with different window sizes,\nto see how important the window size is for the performance on intrinsic evaluation tasks.  We compare the performance of  enwiki_20180420 (300d)  (Wikipedia2Vec (window=5)) with the one of enwiki_20180420_win10 (300d)  (Wikipedia2Vec (window=10)).  For both embeddings, we set the  iteration  to 10, and negative sampling count  to 15. \nFor training, we only use English Wikipedia dump, without adding any additional large-scale corpora.",
+            "title": "Window Size"
+        },
+        {
+            "location": "/benchmarks/#word-similarity_4",
+            "text": "Our experimental results show that larger window size seems to improve the\nperformance on Word Similarity, on the all benchmarks except SimLex999.  It should be noted that  Chiu et al.  showed\nthat the performance on word similarity benchmarks like MEN-TR-3k have negative correlations with downstream tasks, while only SimLex999 has high correlation with extrinsic measures.\nThey also observed that decreasing window size improves the performance on downstream tasks, while it leads to deterioration of performance on most of the Word Similarity benchmarks.     Dataset  Wikipedia2Vec (window=5)  Wikipedia2Vec (window=10)      MEN-TR-3k  0.749  0.7541    RG-65  0.7837  0.7861    SimLex999  0.3815  0.3578    WS-353-ALL  0.6952  0.71    WS-353-REL  0.6233  0.6435    WS-353-SIM  0.7597  0.7848",
+            "title": "Word Similarity"
+        },
+        {
+            "location": "/benchmarks/#word-analogy_4",
+            "text": "Dataset  Wikipedia2Vec (window=5)  Wikipedia2Vec (window=10)      GOOGLE ANALOGY (Semantic)  0.7892  0.789    GOOGLE ANALOGY (Syntactic)  0.6812  0.6529",
+            "title": "Word Analogy"
+        },
+        {
+            "location": "/benchmarks/#entity-relatedness_2",
+            "text": "Dataset  Wikipedia2Vec (window=5)  Wikipedia2Vec (window=10)      KORE  0.6905  0.6811",
+            "title": "Entity Relatedness"
+        },
+        {
+            "location": "/benchmarks/#multilingual-evaluation",
+            "text": "We evaluate our word embeddings (300d) on German, French, Spanish, Portuguese, Polish and Chinese\nword analogy task.",
+            "title": "Multilingual Evaluation"
+        },
+        {
+            "location": "/benchmarks/#multilingual-word-analogy-dataset",
+            "text": "We use the same word analogy dataset as  Grave et.al .   Google Analogy Dataset (German)  Google Analogy Dataset (French)  Google Analogy Dataset (Spanish)  Google Analogy Dataset (Portuguese)  Google Analogy Dataset (Polish)  Google Analogy Dataset (Chinese)",
+            "title": "Multilingual Word Analogy Dataset"
+        },
+        {
+            "location": "/benchmarks/#multilingual-word-analogy-results",
+            "text": "The results of word analogy task evaluation are as follows. \nFollowing  Grave et.al , we restrict the vocabulary for the analogy tasks to the 200,000 most frequent words from the training data.     language  Wikipedia2Vec  fastText ( Grave et.al )      German  0.617  0.61    French  0.68  0.642    Spanish  0.574  0.574    Portuguese  0.53  0.54    Polish  0.516  0.534    Chinese  0.572  0.631",
+            "title": "Multilingual Word Analogy Results"
         }
     ]
 }
