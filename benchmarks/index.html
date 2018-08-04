@@ -123,15 +123,15 @@
 
 <h1 id="benchmarks">Benchmarks<a class="headerlink" href="#benchmarks" title="Permanent link"></a></h1>
 <hr />
-<p>We provide the performance on a variety of benchmarks for the Wikipedia2Vec pre-trained model.  </p>
-<p>Evaluations are conducted end-to-end, and we used  <a href="https://github.com/wikipedia2vec/wikipedia2vec/blob/master/scripts/intrinsic_eval.py">intrinsic_eval.py</a> under <code>scripts</code> directory of Wikipedia2Vec, to evaluate Wikipedia2Vec performance.</p>
+<p>We provide the performance on a variety of benchmarks for the Wikipedia2Vec pretrained model.</p>
+<p>Evaluations are conducted end-to-end, and we used  <a href="https://github.com/wikipedia2vec/wikipedia2vec/blob/master/scripts/intrinsic_eval.py">intrinsic_eval.py</a> to evaluate Wikipedia2Vec performance.</p>
 <h3 id="about-the-evaluations">About The Evaluations<a class="headerlink" href="#about-the-evaluations" title="Permanent link"></a></h3>
-<p>We conducted evaluations on a variety of intrinsic tasks.  </p>
-<p>Wikipedia2Vec learns embeddings that map words and entities into a unified continuous vector space, and in this experiment, we evaluated the learned embeddings of words and those of entities separately.  <br />
-In particular, we evaluated the word embeddings with <strong>Word Similarity</strong> and <strong>Word Analogy</strong>, while we evaluate the entity embeddings with <strong>Entity Relatedness</strong>.</p>
+<p>We conducted evaluations on a variety of intrinsic tasks.</p>
+<p>Wikipedia2Vec learns embeddings that map words and entities into a unified continuous vector space.
+Therefore, in this experiment, we evaluated the learned embeddings of words and those of entities separately.
+In particular, we evaluated the word embeddings with <strong>Word Similarity</strong> and <strong>Word Analogy</strong>, while we evaluated the entity embeddings with <strong>Entity Relatedness</strong>.</p>
 <h4 id="word-similarity">Word Similarity<a class="headerlink" href="#word-similarity" title="Permanent link"></a></h4>
-<p>Word Similarity is a task for intrinsic evaluation of word embeddings,
-which correlates the distance between vectors and human judgments of semantic similarity.  </p>
+<p>Word Similarity is a task for intrinsic evaluation of word embeddings, which correlates the distance between vectors and human judgments of semantic similarity.</p>
 <ul>
 <li><a href="http://clic.cimec.unitn.it/~elia.bruni/MEN.html">MEN-TR-3k</a> (<a href="https://staff.fnwi.uva.nl/e.bruni/publications/bruni2014multimodal.pdf">Bruni et al.,2014</a>)</li>
 <li><a href="https://aclweb.org/aclwiki/RG-65_Test_Collection_(State_of_the_art)">RG-65</a>
@@ -154,20 +154,20 @@ which correlates the distance between vectors and human judgments of semantic si
 <h2 id="model-comparison-with-gensim">Model Comparison with Gensim<a class="headerlink" href="#model-comparison-with-gensim" title="Permanent link"></a></h2>
 <p>In this section, we compare the performance on Word Similarity and Word Analogy
 benchmarks of our Wikipedia2Vec-trained model
-with the model trained by <a href="https://radimrehurek.com/gensim/">gensim</a>.<br />
+with the model trained by <a href="https://radimrehurek.com/gensim/">gensim</a>.
 We do not compare the performance on Entity Relatedness here.</p>
 <p>For both embeddings, we set the <em>window size</em> to 5, <em>iteration</em> to 10, and
-<em>negative sampling count</em> to 15.<br />
+<em>negative sampling count</em> to 15.
 For training, we only used English Wikipedia dump, without adding any additional large-scale corpora.
-We used  <a href="https://github.com/wikipedia2vec/wikipedia2vec/blob/master/scripts/gensim_wikipedia.py">gensim_wikipedia.py</a> under <code>script</code> directory of Wikipedia2vec to train gensim-based word embeddings.</p>
-<p>The results on a variety of benckmarks show that Wikipedia2Vec pretrained model
-(<a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_300d.txt.bz2">enwiki_20180420_300d.pkl</a>) outperformed gensim pretrained model.</p>
+We used  <a href="https://github.com/wikipedia2vec/wikipedia2vec/blob/master/scripts/gensim_wikipedia.py">gensim_wikipedia.py</a> to train gensim-based word embeddings.</p>
+<p>The results on a variety of benckmarks show that Wikipedia2Vec pretrained embeddings
+(<a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_300d.txt.bz2">enwiki_20180420_300d.pkl</a>) outperformed gensim pretrained embeddings.</p>
 <!-- - enwiki_20180420_win10_300d.pkl
 - gensim_model_300d.pkl -->
 
 <h3 id="word-similarity_1">Word Similarity<a class="headerlink" href="#word-similarity_1" title="Permanent link"></a></h3>
 <p>We evaluated the performance on 6 Word Similarity benchmarks,
-and our Wikipedia2Vec pre-trained model outperformed gensim pretrained in almost all of
+and our Wikipedia2Vec pretrained model outperformed gensim pretrained in almost all of
 the benchmarks.</p>
 <table>
 <thead>
@@ -211,8 +211,8 @@ the benchmarks.</p>
 </tbody>
 </table>
 <h3 id="word-analogy_1">Word Analogy<a class="headerlink" href="#word-analogy_1" title="Permanent link"></a></h3>
-<p>In both of the Word Analogy tasks, the embeddings trained by Wikipedia2Vec
-significantly outperformed the embedding trained by gensim.</p>
+<p>In both of the two Word Analogy tasks, the embeddings trained by Wikipedia2Vec
+significantly outperformed the embeddings trained by gensim.</p>
 <table>
 <thead>
 <tr>
@@ -237,26 +237,26 @@ significantly outperformed the embedding trained by gensim.</p>
 <h2 id="model-comparison-with-word2vec-glove">Model Comparison with word2vec, GloVe<a class="headerlink" href="#model-comparison-with-word2vec-glove" title="Permanent link"></a></h2>
 <p>In this section, we compare the performance of
 <a href="https://code.google.com/archive/p/word2vec/">word2vec</a> and <a href="https://nlp.stanford.edu/projects/glove/">GloVe</a> pretrained embeddings
-and our Wikipedia2Vec word embeddings.  </p>
+and our Wikipedia2Vec word embeddings.</p>
 <p>In the previous section, we compared the models only trained with English
-Wikipedia dump.<br />
+Wikipedia dump.
 It is widely known that the quality of the word embeddings increases significantly
 with large amount of the training data.
 Therefore, we compare the performances of publicly available
 word embeddings trained with much larger amount of training data.</p>
-<p>We use <a href="https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit?usp=sharing">word2vec google_news pre-trained embedding</a>
+<p>We use <a href="https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit?usp=sharing">word2vec google_news pretrained embedding</a>
 (100B words, 3M vocab),
 GloVe's <a href="http://nlp.stanford.edu/data/glove.42B.300d.zip">glove.42B.300d</a>
 (42B tokens, 1.9M vocab) and <a href="http://nlp.stanford.edu/data/glove.840B.300d.zip">glove.840B.300d</a>
-(840B tokens, 2.2M vocab) pre-trained embeddings.</p>
+(840B tokens, 2.2M vocab) pretrained embeddings.</p>
 <h3 id="word-similarity_2">Word Similarity<a class="headerlink" href="#word-similarity_2" title="Permanent link"></a></h3>
 <p>The glove.840B.300d outperformed our embeddings trained with Wikipedia on
-all of the benchmarks, benefiting from its huge vocabulary size and Common Crawl
-based huge training corpus.</p>
-<p>On the other hand, our Wikipedia2Vec pretrained vector outperformed word2vec_gnews and
+all of the benchmarks, benefiting from its huge vocabulary size and Common Crawl-based
+huge training corpus.</p>
+<p>On the other hand, our Wikipedia2Vec pretrained embeddings outperformed word2vec_gnews and
 glove_42b_300d on some of the benchmarks,
 even though training corpora for these embeddings are three or four orders of
-magnitudes larger than the training corpus obtained only from Wikipedia.  </p>
+magnitudes larger than the training corpus obtained only from Wikipedia.</p>
 <table>
 <thead>
 <tr>
@@ -315,7 +315,7 @@ magnitudes larger than the training corpus obtained only from Wikipedia.  </p>
 <h3 id="word-analogy_2">Word Analogy<a class="headerlink" href="#word-analogy_2" title="Permanent link"></a></h3>
 <p>In Word Analogy evaluations, we found the same trend as Word Similarity,
 and Wikipedia2Vec embeddings shows competitive performance despite of its smaller scale training corpus.
-In both of the tasks, The word2vec_gnews shows out-of-vocabulary (OOV).</p>
+We excluded word2vec_gnews here because many of the words are missing in both of the datasets.</p>
 <table>
 <thead>
 <tr>
@@ -342,9 +342,9 @@ In both of the tasks, The word2vec_gnews shows out-of-vocabulary (OOV).</p>
 </table>
 <h2 id="comparison-with-state-of-the-art-entity-embeddings-method">Comparison with State of The Art Entity Embeddings Method<a class="headerlink" href="#comparison-with-state-of-the-art-entity-embeddings-method" title="Permanent link"></a></h2>
 <p><a href="http://www.semantic-web-journal.net/system/files/swj1495.pdf">Ristoski et.al</a> proposed <strong>RDF2Vec</strong>, an approach that learns entity embeddings using word embedding methods (i.e., CBOW and skip-gram) with RDF graphs as inputs.</p>
-<p>RDF2Vec model has achieved the state of the art performance on KORE dataset. <br />
-We compare Entity Relatedness performance of both of the models with the same word dimensionality.</p>
-<p>As shown in the table below, except for the only one category, Hollywood celebrities,
+<p>RDF2Vec model achieved the state of the art performance on KORE dataset.
+We compare Entity Relatedness performance of RDF2Vec and Wikipedia2Vec with the same number of word dimensions.</p>
+<p>As shown in the table below, except for the only one category (i.e., Hollywood celebrities)
 Wikipedia2Vec achieved higher performance on KORE dataset.</p>
 <table>
 <thead>
@@ -390,19 +390,19 @@ Wikipedia2Vec achieved higher performance on KORE dataset.</p>
 <h2 id="the-effects-of-parameter-tuning">The Effects of Parameter Tuning<a class="headerlink" href="#the-effects-of-parameter-tuning" title="Permanent link"></a></h2>
 <p>We also provide benchmark evaluations of Wikipedia2Vec pretrained models,
 with different training settings to show how the performance varies on various hyper-parameters.
-All of the pre-trained models are available, and you can download them from the
+All of the pretrained models are available, and you can download them from the
 <a href="https://wikipedia2vec.github.io/wikipedia2vec/pretrained/">pretrained embeddings page</a>.</p>
 <h3 id="link-graph">Link Graph<a class="headerlink" href="#link-graph" title="Permanent link"></a></h3>
 <p>The link graph model that learns to estimate neighboring entities given an entity
- in the link graph of Wikipedia entities.<br />
+ in the link graph of Wikipedia entities.
 We compared the performance of the link graph model with the no link graph model to
-see the effectiveness of the link graphs between entities.<br />
+see the effectiveness of the link graphs between entities.
 Except for the link graph, we set all of the parameters to the same.
 For both embeddings, we set the <em>window size</em> to 5, <em>iteration</em> to 10, and
 <em>negative sampling count</em> to 15.</p>
 <h4 id="word-similarity_3">Word Similarity<a class="headerlink" href="#word-similarity_3" title="Permanent link"></a></h4>
 <p>In terms of the performance on Word Similarity task, no link graph model
-outperforms the link graph model.</p>
+outperformed the link graph model.</p>
 <table>
 <thead>
 <tr>
@@ -494,7 +494,7 @@ to see how important the window size is for the performance on intrinsic evaluat
 <p>We compare the performance of <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_300d.pkl.bz2">enwiki_20180420 (300d)</a> (Wikipedia2Vec (window=5)) with the one of
 <a href="http://wikipedia2vec.s3.amazonaws.com/models/en/2018-04-20/enwiki_20180420_win10_300d.pkl.bz2">enwiki_20180420_win10 (300d)</a> (Wikipedia2Vec (window=10)).</p>
 <p>For both embeddings, we set the <em>iteration</em> to 10, and
-<em>negative sampling count</em> to 15.<br />
+<em>negative sampling count</em> to 15.
 For training, we only use English Wikipedia dump, without adding any additional large-scale corpora.</p>
 <h4 id="word-similarity_4">Word Similarity<a class="headerlink" href="#word-similarity_4" title="Permanent link"></a></h4>
 <p>Our experimental results show that larger window size seems to improve the
@@ -596,7 +596,7 @@ word analogy task.</p>
 <li><a href="https://github.com/wikipedia2vec/wikipedia2vec/blob/master/data/zh/word/analogy/ZH-GOOGLE.txt">Google Analogy Dataset (Chinese)</a></li>
 </ul>
 <h4 id="multilingual-word-analogy-results">Multilingual Word Analogy Results<a class="headerlink" href="#multilingual-word-analogy-results" title="Permanent link"></a></h4>
-<p>The results of word analogy task evaluation are as follows.<br />
+<p>The results of word analogy task evaluation are as follows.
 Following <a href="https://arxiv.org/abs/1802.06893">Grave et.al</a>, we restrict the vocabulary for the analogy tasks to the 200,000 most frequent words from the training data.</p>
 <table>
 <thead>
